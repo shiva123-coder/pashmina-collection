@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css_products %}
+    <link rel="stylesheet" href="{% static 'product/css/product.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if query %}
+        <h1 class="text-left ml-4 pl-4 pt-4 mt-r text-primary">
+            {% if products|length == 0 %}
+                No results found for "{{ query }}"
+            {% elif products|length == 1 %}
+                Found 1 result for "{{ query }}"
+            {% else %}
+                Found {{ products|length }} results for "{{ query }}"
+            {% endif %}
+        </h1>
+    {% endif %}
+  
+    <!-- Display all products -->
+    <div class="product-container-sub col-10 offset-1">
+        <div class="row mt-1 mb-2"></div>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 card-product">
+                    <div class="card menu-card">
+                        <div class="product-image card-image">
+                            {% if product.product_images.all %}
+                                <a href="{% url 'product_details' product.id %}">
+                                    <img class="card-img-top img-fluid" src="{{ product.product_images.first.image.url }}" alt="{{ product.product_name }}">
+                                    <!-- if 2nd image needed then use :  {{ product.product_iamges.all.1.image.url }}-->
+                                </a>
+                            {% else %}
+                                <a href="{% url 'product_details' product.id %}">
+                                    <img class="card-img-top no-image img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.product_name }}">
+                                </a>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="display-5 text-left text-main font-weight-bold">
+                                        {{ product.product_name }}
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="diaplay-3 text-right text-main font-weight-bold">£{{ product.price }}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-footer border-0 text-left woman-details">
+                            <div class="row">
+                                <div class="col">                                               
+                                    <!--edit/delete button for admin to edit/delet woman from the page-->
+                                    {% if request.user.is_superuser %}
+                                        <small class="badges">
+                                            <a href="" class="badge badge-warning">Edit</a> | 
+                                            <a class="badge badge-danger" href="">Delete</a>
+                                        </small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--renders horizontal row between the card rows-->
+                <!--thanks to Chris Z for explaining this trick on CI walkthrough project-->
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'product/js/product.js' %}"></script>
+    <script>
+        let csrfToken = "{{ csrf_token }}"
+    </script>
+{% endblock %}

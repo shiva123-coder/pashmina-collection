@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load static %}
+{% load basket_tools %}
+
+{% block extra_css_basket %}
+    <link rel="stylesheet" href="{% static 'basket/css/basket.css' %}">
+{% endblock %}
+
+{% block content %}
+   <div class="container basket-container">
+    <div class="row text-center">
+        <div class="col">
+            <h2 class="basket-title mt-5 pb-4 pt-4 font-weight-bold">Order Basket</h2>
+            <hr class="block-divider">
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col">
+            {% if basket_products %}
+                <!-------display basket details on small devices only--->
+                <div class="d-block d-md-none">
+                    <div class="row">
+                        <div class="col">
+                            {% include "basket/cost.html" %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            {% include "basket/checkout_btn.html" %}
+                            <p class="text-small ">A summary of your basket contents is below</p>
+                        </div>
+                    </div>
+                    {% for product in basket_products %}
+                        <div class="row">
+                            <div class="col-12 mb-2">
+                                <p class="text-center font-weight-bold text-main">{{ product.product.product_name }}</p>
+                            </div>
+                            <div class="col-12 mb-2">
+                                {% include "basket/image.html" %}
+                            </div>
+                            <div class="col-12 mb-2">
+                                {% include "basket/product_info.html" %}
+                            </div>
+                            <div class="col-12 order-sm-last">
+                                <p class="text-center">Each : £ {{ product.product.price }}</p>
+                                <p><strong>Total : </strong>£ {{ product.product.price | calculate_total:product.quantity }}</p>
+                            </div>
+                            <div class="col-12">
+                                {{ product.selected_size }}
+                            </div>
+                            <div class="col-12">
+                                {{ product.selected_color }}
+                            </div>
+                            <div class="col-12">
+                                {% include "basket/quantity.html" %}
+                            </div>
+                        </div>
+                        <div class="row"><div class="col"><hr></div></div>
+                    {% endfor %}
+                </div>
+                <!------hide basket details on small devices-->
+                <!-----bootstrap table----->
+                <div class="table-responsive rounded d-none d-md-block">
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-main font-weight-bold">
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col"></th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+
+                        {% for product in basket_products %}
+                            <tr class="text-main">
+                                <td class="p-3 w-25">
+                                    {% include "basket/image.html" %}
+                                </td>
+                                <td class="py-3">
+                                    {% include "basket/product_info.html" %}
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0">£ {{ product.product.price }}</p>
+                                </td>
+                                <td class="py-3">
+                                    {% include "basket/quantity.html" %}
+                                </td>
+                                <td class="py-3">
+                                    {{ product.selected_size }}
+                                </td>
+                                <td class="py-3">
+                                    {{ product.selected_color }}
+                                </td>
+                                <td class="py-3">
+                                    <p><strong></strong>£ {{ product.product.price | calculate_total:product.quantity }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr class="text-main">
+                            <td colspan="5" class=" text-right">
+                                {% include "basket/cost.html" %}
+                            </td>
+                        </tr>
+                        <tr class="text-main">
+                            <td colspan="5" class="text-right">
+                                {% include "basket/checkout_btn.html" %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            {% else %}
+                <p class="basket-heading mt-3 text-main"></p><strong>Your basket is currently empty.</strong></p>
+                <a href="{% url 'all_products' %}" class="btn btn-light btn-lg border border-secondary mt-5">
+                    <span class="icon">
+                        <i class="fas fa-arrow-circle-left"></i>
+                    </span>
+                    <span class="basket-heading basket-heading-sub text-uppercase text-main">Back to our menu</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block postloadjs %}
+    {{ block.super }}
+
+    <script type="text/javascript">
+        // update and remove option in the basket after quantity modification
+        // update option
+        $('.update-qty').click(function(e) {
+                var form = $(this).prev('.update-form');
+                form.submit();
+            })
+        // remove option
+        $('.remove-qty').click(function(e) {
+            var csrfToken = "{{ csrf_token }}";
+            var productId = $(this).attr('id').split('remove_')[1];
+            var size = $(this).data('size'); // Retrieve size from data attribute
+            var color = $(this).data('color'); // Retrieve color from data attribute
+
+            var url = `/basket/remove/${productId}/`;
+            var data = {
+                'csrfmiddlewaretoken': csrfToken,
+                'size': size,  // Include size in the data
+                'color': color  // Include color in the data
+            };
+
+            $.post(url, data)
+                .done(function() {
+                    location.reload();
+                });
+        });
+    </script>
+    <!--Custom JS file for basket app only -->
+    <script src="{% static 'basket/js/basket.js' %}"></script>
+{% endblock %}

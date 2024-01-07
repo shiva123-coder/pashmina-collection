@@ -1,0 +1,57 @@
+{% load basket_tools %}
+{% load static %}
+
+<div class="toast success-toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="10000">
+    <div class="toast-header">
+        <strong class="mr-auto text-success">Success !</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body">
+        <div class="row">
+            <div class="col">
+                <p class="message success-message">{{ message }}</p>
+                <hr>
+            </div>
+        </div>
+        {% if sum_total and not on_profile_page %}
+            <p class="display-6">Your basket has {{ product_count }} items</p>
+            <div class="item-summary-container">
+                <!-- Refer to context.py file to understand cart_products -->
+                {% for product in cart_products %} 
+                    <div class="row">
+                        <div class="col-4 col-img-success mb-2 mt-2">
+                        {% if product.image %}
+                            <img class="w-100" src="{{ product.image }}" alt="{{ product.product.product_name }}">
+                        {% else %}
+                            <img class="w-100" src="{{ MEDIA_URL }}no-image.jpg" alt="{{ product.product.product_name }}">
+                        {% endif %}
+                        </div>
+                        <div class="col-4">
+                            <p class="my-0"><strong>{{ product.product.product_name }}</strong></p>
+                            <p>
+                                {% if product.selected_size and product.selected_color %}
+                                    <p class="text-muted my-0">Size: {{ product.selected_size }}</p>
+                                    <p class="text-muted my-0">Color: {{ product.selected_color }}</p>
+                                {% endif %}
+                            </p>                        
+                        </div>
+                        <div class="col-3 text-left">
+                            <p class="my-0 small text-muted">Qty: {{ product.quantity }}</p>
+                            <p class="total-price">£{{ product.product.price | calculate_total:product.quantity }}</p>   
+                        </div>
+                        
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <a href="{% url 'view_basket' %}" class="btn btn-success">View
+                        basket
+                    </a>
+                </div>
+            </div>
+        {% endif %}        
+    </div>
+</div>

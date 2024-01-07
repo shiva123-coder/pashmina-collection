@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% load basket_tools %}
+
+
+{% block extra_css_checkout %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container checkout-container">
+    <!---page heading-->
+    <div class="row text-center">
+        <div class="col">
+            <h2 class="mt-4 font-weight-bold">Thank You!</h2>
+            <p class="display-6">We have received your order and we will deliver to you shortly, confirmation email has been sent to <strong>{{ order.email }}</strong></p>
+        </div>
+    </div>
+    <!-----order details-->
+    <div class="row">
+        <!-----order summary in details-->
+        <div class="col-sm-12 col-md-4 offset-md-2 order-sm-first">
+            <h4 class="mt-3">Order details</h4>
+            <div class="row">
+                <div class="col">
+                    <h6 class="mt-3">Order Number</h6>
+                    <p class="text-muted">{{ order.order_number }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h6 class="mt-3">Name on Order</h6>
+                    <p class="text-muted">{{ order.full_name }}</p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <h6 class="mt-3">Order Date</h6>
+                    <p class="text-muted">{{ order.date }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h6 class="mt-3">Delivery Address</h6>
+                    <p class="text-muted">{{ order.street_address }}, {{ order.postal_code }} </p>
+                </div>
+            </div>
+        </div>
+        <!-----products details-->
+        <div class="col-sm-12 col-md-4 offset-md-2">
+            <h4 class="mt-3">products</h4>
+            <div class="product-summary-container">
+                {% for ib in order.lineitems.all %} 
+                <!--lineitems is related name on djanjo model for OrderLineItem Class -->
+                    <div class="row">
+                        {% if ib.product.product_images.first %}
+                            {% for product_image in ib.product.product_images.all %}
+                                {% if product_image.color == ib.color %}
+                                    <div class="col checkout-img-col mb-2 mt-2">
+                                        <img class="w-100 mt-3" src="{{ product_image.image.url }}" alt="{{ ib.product.product_name }}">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="col checkout-img-col mb-2 mt-2">
+                                <img class="w-100 mt-3" src="{{ MEDIA_URL }}noimage.jpg" alt="{{ ib.product.product_name }}">
+                            </div>
+                        {% endif %}
+                        <div class="col">
+                            <div class="row">
+                                <div class="col mt-3">
+                                    <p class="my-0"><strong>{{ ib.product.product_name }}</strong></p>
+                                    <p class="my-0 small text-muted">Qty: {{ ib.quantity }}</p>
+                                    {% if ib.size %}
+                                        <p class="my-0 small text-muted">Size: {{ ib.size }}</p>
+                                    {% endif %}
+                                    {% if ib.color %}
+                                        <p class="my-0 small text-muted">Color: {{ ib.color }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="my-0 mt-2"><strong>Price</strong></p>
+                                    <p class="my-0 small text-muted">£{{ ib.product.price | calculate_total:ib.quantity }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %} 
+            </div>
+            <!---order cost details---->
+            <hr class="mt-3 mb-3">
+            <div class="row text-black text-right">
+                <div class="col-7 offset-2">
+                    <p class="my-0">Basket Total:</p>
+                    <p class="my-0">Delivery Charge:</p>
+                     <!--remove d-none class if discount % need to be shown -->
+                    <p class="my-0 d-none">Discount:</p>
+                    <p class="my-0">Total Discount:</p>
+                    <p class="my-0">Sub-total:</p>
+                </div>
+                <div class="col-3">
+                    <p class="my-0">£{{ order.total | floatformat:2 }}</p>
+                    <p class="my-0">£{{ order.delivery_cost | floatformat:2 }}</p>
+                    <!--remove d-none class if discount % need to be shown -->
+                    <p class="d-none">: {{ order.discount_percent | floatformat:0 }}%</p>
+                    <p class="my-0">- £{{ order.discount_amount | floatformat:2  }}</p>
+                    <p class="my-0"><strong>£{{ order.sum_total | floatformat:2 }}</strong></p>
+                </div>
+            </div>
+        </div>
+                    
+    </div>
+    <!----button to go back to menu---->
+    <div class="row text-center">
+        <div class="col">
+            <a href="{% url 'all_products' %}" class="buy-now-button btn btn-secondary text-capitalize py-2 mt-5">Order Again</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

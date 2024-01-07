@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css_products %}
+    <link rel="stylesheet" href="{% static 'product/css/product.css' %}">
+{% endblock %}
+
+
+{% block header_main %}
+<div class="overlay"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+        <div class="container-fluid pt-2 pb-3">
+            <div class="row kids-row">
+                <div class="col text-center">
+                    {% if existing_categories %}
+                        <h2 class="kids kids-heading font-weight-bold pb-0">
+                            {% for c in existing_categories %}
+                            <a class="badge badge-white text-black">{{ c.display_name }}
+                                <hr class="block-divider">
+                            </a>
+                            {% endfor %}
+                        </h2>
+                    {% else %}
+                        <h2 class="kids kids-heading font-weight-bold">
+                            <a class="badge badge-white text-black">kids
+                                <hr class="block-divider">
+                            </a>
+                        </h2>
+                    {% endif %}
+                </div>
+            </div>
+            <!--search box, only visible on small and medium devices-->
+            <div class="row">
+                <div class="col">
+                    <div class="col-6 col-lg-4 mx-auto py-1 py-lg-0 d-block d-lg-none pb-2 pt-0">
+                        <form method="GET" action="{% url 'kids_products' %}">
+                            <div class="input-group w-100">
+                                <input class="form-control border borderwhite search-field" type="text" name="q1" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="form-control btn btn-black border border-white search-btn" type="submit">
+                                        <span class="icon">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="kids-container col-10 offset-1">
+                <div class="row">
+                    <!--sort option-->
+                    <div class="col-10 offset-1 d-flex justify-content-center justify-content-md-center">
+                        <div class="sort-option w-40 ">
+                            <select id="sort-selection" class="custom-select -{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                <option value="reset" {% if existing_sorting == 'None_None' %}selected{% endif %}>Sort
+                                    by...</option>
+                                <option value="price_asc" class="sortkids" {% if existing_sorting == 'price_asc' %}selected{% endif %}>
+                                    Price (low to high)</option>
+                                <option value="price_desc" {% if existing_sorting == 'price_desc' %}selected{% endif %}>
+                                    Price (high to low)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--kids category heading-->
+                    <div class="col-12 col-md-6">
+                        <p class="text-center text-md-left h2"> Kids  | <span class="text-primary">{{ kidsproducts|length }} </span>
+                            <span>
+                                 {% if existing_categories %}
+                                    {% for c in existing_categories %}
+                                        {% if kidsproducts|length == 1 %}
+                                            <a class="text-primary">{{ c.display_name }}</a>
+                                        {% elif kidsproducts|length > 1 %}
+                                            <a class="text-primary">{{ c.display_name }}s</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            
+                            {% if search_term %}<strong>"{{ search_term }}"</strong>{% endif %}
+                            </span>  
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--bootstrap card with kids image, price and category-->
+            <div class="kids-container-sub col-10 offset-1">
+                <div class="row mt-1 mb-2"></div>
+                    <div class="row">
+                        {% for kids in kidsproducts %}
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 card-kids">
+                                <div class="card menu-card">
+                                    <div class="kids-image card-image">
+                                        {% if kids.images.all %}
+                                            <a href="{% url 'product_details' kids.id %}">
+                                                <img class="card-img-top img-fluid" src="{{ kids.images.first.image.url }}"
+                                                    alt="">
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url 'product_details' kids.id %}">
+                                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.jpg"
+                                                    alt="{{ kids.name }}">
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="display-5 text-left text-main font-weight-bold">
+                                                    {{ kids.product_name }}
+                                                </p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="diaplay-3 text-right text-main font-weight-bold">£{{ kids.price }}</p>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="card-footer border-0 text-left kids-details">
+                                        <div class="row">
+                                            <div class="col">
+                                                {% if kids.category %}
+                                                    <p class="small mt-1 mb-0">
+                                                        <a class="text-main" href="{% url 'kids_products' %}?category={{ kids.category.name }}">
+                                                            {{ kids.category.display_name }}
+                                                        </a>
+                                                    </p>
+                                                {% else %}
+                                                    <p class="small mt-1 mb-0">
+                                                        <a class="text-muted" href="">
+                                                        </a>
+                                                    </p>
+                                                {% endif %}
+                                                <!--edit/delete button for admin to edit/delet kids from the page-->
+                                                {% if request.user.is_superuser %}
+                                                    <small class="badges">
+                                                        <a href="" class="badge badge-warning">Edit</a> | 
+                                                        <a class="badge badge-danger" href="">Delete</a>
+                                                    </small>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!--renders horizontal row between the card rows-->
+                        <!--thanks to Chris Z for explaining this trick on CI walkthrough project-->
+                        {% if forloop.counter|divisibleby:1 %}
+                        <div class="col-12 d-none">
+                            <hr>
+                        </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:2 %}
+                        <div class="col-12 d-none">
+                            <hr>
+                        </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:3 %}
+                        <div class="col-12 d-none">
+                            <hr>
+                        </div>
+                        {% endif %}
+                        {% if forloop.counter|divisibleby:4 %}
+                        <div class="col-12 d-none">
+                            <hr>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+    <script src="{% static 'product/js/product.js' %}"></script>
+    <script>
+        let csrfToken = "{{ csrf_token }}"
+    </script>
+{% endblock %}

@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css_home %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/animation.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid container-carousel">
+        <!---------------------------Bootstrap Carousel used for image slider----------------------------->
+        <div id="carouselhomeCardIndicators" class="carousel slide" data-ride="carousel" data-interval="7000">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselhomeCardIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselhomeCardIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselhomeCardIndicators" data-slide-to="2"></li>
+                <li data-target="#carouselhomeCardIndicators" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <!-- Carousel Slider carousel -->
+                {% for carousel in carousels %}
+                    <div class="carousel-item carousel-home {% if forloop.counter0 == 0 %} active {% endif %}">
+                    {% if carousel.image %}
+                        <img src="{{ carousel.image.url }}" class="{{ carousel.image_class }} w-100 carousel-image" alt="image">
+                    {% else %}
+                        <img class="carousel-image" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
+                    {% endif %}
+                    <div class="banner-text {{ carousel.css_class }} ">
+                        <h1 class="text-main text-center text-capitalize display-3 sign" id="{{ carousel.id }}">{{ carousel.title }}</h1>
+                        {% if carousel.description %}
+                            <p class="banner-sub-text text-center h3 text-main open-text"><strong class="text-desc text-main">{{ carousel.description }}</strong></p>
+                        {% endif %}
+                        {% if carousel.extra_info %}
+                            <p class="banner-sub-text text-center h3 text-main open-text">{{ carousel.extra_info }}</p>
+                        {% endif %}
+                        <p class="btn-banner mt-3 text-center">
+                            <!--Buttond for 1st carousel/If and whenever needed-->
+                            {% if carousel.css_class == 'first' %}
+                                {% if carousel.btn_main_first %}
+                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-first">
+                                        <strong class="h4 btn-main-first">{{ carousel.btn_main_first }}</strong>
+                                    </a>
+                                {% endif %}
+                                <span>
+                                {% if carousel.btn_sub_first %}
+                                    <a href="tel:+447470381691" class="btn btn-secondary mt-3 btn-sub-first">
+                                        <strong class="h4 btn-sub-first"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_first }}</strong>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            <!--Buttond for 2nd carousel/If and whenever needed-->
+                            {% if carousel.css_class == 'second' %}
+                                {% if carousel.btn_main_second %}
+                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-second">
+                                        <strong class="h4 btn-main-second">{{ carousel.btn_main_second }}</strong>
+                                    </a>
+                                {% endif %}
+                                <span>
+                                {% if carousel.btn_sub %}
+                                    <a href="tel:+447470381691" class="btn btn-primary mt-3 btn-sub-second">
+                                        <strong class="h4 btn-sub-second"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_second }}</strong>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            <!--Buttond for 3rd carousel/If and whenever needed-->
+                            {% if carousel.css_class == 'third' %}
+                                {% if carousel.btn_main_third %}
+                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-third">
+                                        <strong class="h4 btn-main-third">{{ carousel.btn_main_third }}</strong>
+                                    </a>
+                                {% endif %}
+                                <span>
+                                {% if carousel.btn_sub %}
+                                    <a href="tel:+447470381691" class="btn btn-info mt-3 btn-sub-third">
+                                        <strong class="h4 btn-sub-third"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_third }}</strong>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            <!--Buttond for 4th carousel/If and whenever needed-->
+                            {% if carousel.css_class == 'fourth' %}
+                                {% if carousel.btn_main_fourth %}
+                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-fourth">
+                                        <strong class="h4 btn-main-fourth p2">{{ carousel.btn_main_fourth }}</strong>
+                                    </a>
+                                {% endif %}
+                                <span>
+                                {% if carousel.btn_sub %}
+                                    <a href="tel:07470381691" class="btn btn-primary mt-3 btn-sub-fourth">
+                                        <strong class="h4 btn-sub-fourth"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_fourth }}</strong>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            <!--Buttond for 5th carousel/If and whenever needed-->
+                            {% if carousel.css_class == 'fifth' %}
+                                {% if carousel.btn_main_fifth %}
+                                    <a href="" class="btn btn-primary mt-3 mr-3 btn-main-fifth">
+                                        <strong class="h4 btn-main-fifth"><i class="fas fa-calendar-check mr-2"></i>{{ carousel.btn_main_fifth }}</strong>
+                                    </a>
+                                {% endif %}
+                                <span>
+                                {% if carousel.btn_sub %}
+                                    <a href="tel:07470381691" class="btn btn-primary mt-3 btn-sub-fifth">
+                                        <strong class="h4 btn-sub-fifth"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_fifth }}</strong>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!--Carousel prev & next indicators -->
+            <a class="carousel-control-prev" href="#carouselhomeCardIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselhomeCardIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <!-- 1st section below carousel (for md, lg and xl device only)-->
+    <div class="container-fluid info-container-main d-none d-md-block">
+        <div class="container info-container">
+            {% for info in infocard %}
+                {% if forloop.counter|divisibleby:2 %}
+                    <!-- For even iterations, reverse the order of image and text (text on right and image on left) -->
+                    <div class="info-text">
+                        <div class="text-left">
+                            <h1 class="text-main info-heading">{{ info.title }}</h1>
+                        </div>
+                        <p class="text-main h3">{{ info.description_first }}</p>
+                        <p class="text-main h3">{{ info.description_second }}</p>
+                    </div>
+                    <div class="info-img">
+                        <img src="{{ info.image.url }}" alt="Image">
+                    </div>
+                {% else %}
+                    <!-- For odd iterations, maintain the original order  (text on left and image on right)-->
+                    <div class="info-img">
+                        <img src="{{ info.image.url }}" alt="Image">
+                    </div>
+                    <div class="info-text">
+                        <div class="text-left">
+                            <h1 class="text-main info-heading">{{ info.title }}</h1>
+                        </div>
+                        <p class="text-main h3">{{ info.description_first }}</p>
+                        <p class="text-main h3">{{ info.description_second }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- 1st section below carousel (for small/mobile device only-->
+    <div class="container-fluid info-container-main d-block d-md-none">
+        {% for info in infocard %}
+            <div class="info-text">
+                <div class="text-left">
+                    <h1 class="text-main info-heading">{{ info.title }}</h1>
+                </div>
+                <p class="text-main h3">{{ info.description_first }}</p>
+                <p class="text-main h3">{{ info.description_second }}</p>
+            </div>
+            <div class="info-img">
+                <img src="{{ info.image.url }}" alt="Image">
+            </div>
+        {% endfor %}
+    </div>
+    <!-- 2nd section below carousel-->
+    <div class="container-fluid pr-0 pl-0">
+        <div class="row no-gutters align-item-center">
+            {% for intro in introcard %}
+                <div class="col-md-6 col-lg-3">
+                    <div class="intro-item {{ intro.css_class }}">
+                        <div class="intro-icon">
+                        <img class="intro-image pl-4 pr-4" src="{{ intro.image.url }}" alt="image">
+                        </div>
+                        <div class="intro-text pl-4 pr-4">
+                            <h1 class="text-main">{{ intro.title }}</h1>
+                            <p class="text-main h4">{{intro.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!--Custom JS file for home app only -->
+    <script src="{% static 'home/js/home.js' %}"></script>
+{% endblock %}

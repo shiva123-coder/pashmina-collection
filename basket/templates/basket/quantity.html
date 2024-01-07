@@ -1,0 +1,34 @@
+<form class="form update-form" method="POST" action="{% url 'update_basket' product.product.id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="hidden" name="size" value="{{ product.selected_size }}">
+        <input type="hidden" name="color" value="{{ product.selected_color }}">
+        <div class="input-group input-qty-group">
+            <!---- button to decrease the qty(-)-->
+            <div class="input-group-prepend">
+                <button class="btn btn-dark font-weight-bold decrease-qty"
+                    data-product_id="{{ product.product_id }}" id="decrease-qty{{ product.product_id }}">-
+                </button>
+            </div>
+            <!-------qty input field--->
+            <input class="form-control qty-form qty_input border-dark" type="number"
+                name="quantity" value="{{ product.quantity }}" min="1" max="10"
+                data-product_id="{{ product.product_id }}" id="id_qty_{{ product.product_id }}">
+
+            <!---- button to increase the qty(+)-->
+            <div class="input-group-append">
+                <button class="btn btn-dark font-weight-bold increase-qty"
+                    data-product_id="{{ product.product_id }}" id="increase-qty_{{ product.product_id }}">+
+                </button>
+            </div>
+        </div>
+        <small class="center-align red-text" id="error_qty"></small>
+    </div>
+</form>
+<a  class="update-qty basket-modify"><small>Update </small>|</a>
+<a class="remove-qty text-danger basket-modify"
+   id="remove_{{ product.product_id }}"
+   data-size="{{ product.selected_size }}"
+   data-color="{{ product.selected_color }}">
+   <small>Remove</small>
+</a>
