@@ -112,6 +112,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 SITE_ID = 1
 
 WSGI_APPLICATION = 'pashmina_home.wsgi.application'
