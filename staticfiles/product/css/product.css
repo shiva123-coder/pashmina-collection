@@ -1,0 +1,60 @@
+li.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card.menu-card {
+    max-height: 45rem;
+    min-height: 45rem;
+}
+
+.card-image {
+    height: 35rem;
+    min-height: 35rem;
+}
+
+img.card-img-top.img-fluid {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+img.card-img-top.no-image.img-fluid {
+    object-fit: fill;
+}
+
+.small-thumbnail {
+    width: 50px;
+    /* Adjust the width as needed */
+    height: 50px;
+    /* Adjust the height as needed */
+}
+
+
+/* Custom styles for the thumbnail slider */
+
+.thumbnail-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.thumbnail-slider {
+    display: inline-block;
+    margin-right: 10px;
+    /* Adjust the spacing between thumbnails as needed */
+    vertical-align: top;
+}
+
+.thumbnail-slider img {
+    width: 80px;
+    /* Adjust the width of each thumbnail as needed */
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    /* Border style for unselected thumbnails */
+}
+
+.thumbnail-slider img.active {
+    border-color: #007bff;
+    /* Border color for the selected thumbnail */
+}
