@@ -3,7 +3,7 @@
 {% load basket_tools %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}">
 {% endblock %}
 
 {% block header_main %}
@@ -59,11 +59,12 @@
 
         <!-----items details-->
         <div class="col-sm-12 col-md-4 offset-md-2">
-            <h4 class="mt-3">Items</h4>
-            <div class="item-summary-container">
-                {% for ib in order.lineitems.all %}
+            <h4 class="mt-3">Products</h4>
+             <div class="product-summary-container">
+                {% for ib in order.lineitems.all %} 
+                <!--lineitems is related name on djanjo model for OrderLineItem Class -->
                     <div class="row">
-                         {% if ib.product.product_images.first %}
+                        {% if ib.product.product_images.first %}
                             {% for product_image in ib.product.product_images.all %}
                                 {% if product_image.color == ib.color %}
                                     <div class="col checkout-img-col mb-2 mt-2">
@@ -76,18 +77,23 @@
                                 <img class="w-100 mt-3" src="{{ MEDIA_URL }}noimage.jpg" alt="{{ ib.product.product_name }}">
                             </div>
                         {% endif %}
-                        
                         <div class="col">
                             <div class="row">
                                 <div class="col mt-3">
-                                    <p class="my-0"><strong>{{ ib.item.name }}</strong></p>
+                                    <p class="my-0"><strong>{{ ib.product.product_name }}</strong></p>
                                     <p class="my-0 small text-muted">Qty: {{ ib.quantity }}</p>
+                                    {% if ib.size %}
+                                        <p class="my-0 small text-muted">Size: {{ ib.size }}</p>
+                                    {% endif %}
+                                    {% if ib.color %}
+                                        <p class="my-0 small text-muted">Color: {{ ib.color }}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <p class="my-0 mt-2"><strong>Price</strong></p>
-                                    <p class="my-0 small text-muted">£{{ ib.item.price | calculate_total:ib.quantity }}</p>
+                                    <p class="my-0 small text-muted">£{{ ib.product.price | calculate_total:ib.quantity }}</p>
                                 </div>
                             </div>
                         </div>

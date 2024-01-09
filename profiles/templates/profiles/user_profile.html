@@ -41,7 +41,6 @@
                         <tr>
                             <th scope="col">Order Number</th>
                             <th scope="col">Order Date</th>
-                            <th scope="col">Items</th>
                             <th scope="col">Order Total</th>
                         </tr>
                         </thead>
@@ -54,15 +53,6 @@
                                         </a>
                                     </th>
                                     <td>{{ order.date }}</td>
-                                    <td>
-                                        <ul class="list-unstyled">
-                                            {% for ib in order.lineitems.all %}
-                                                <li class="small">
-                                                    {{ ib.item.name }} X {{ ib.quantity }}
-                                                </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </td>
                                     <td>£{{ order.sum_total }}</td>
                                 </tr>
                             {% endfor %}

@@ -168,7 +168,14 @@ USE_I18N = True
 
 USE_TZ = True
 
+# valiables for delivery option
 FREE_DELIVERY_OUTSET = 20
+DISCOUNT_PERCTENTAGE = 20
+# stripe
+STRIPE_CURRENCY = 'gbp'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)

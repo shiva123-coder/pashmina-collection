@@ -23,7 +23,7 @@
         *.sqlite3
         * .pyc
         __pycache__
-
+        .env
       ```
 
 
@@ -85,10 +85,6 @@
      ```
      CRISPY_TEMPLATE_PACK = 'bootstrap4'
      ```
-
-
-
-
 
 
 
@@ -170,6 +166,8 @@
             'allauth.account.middleware.AccountMiddleware',
             # Rest of the codes
             ]
+
+        IMPORTANT NOTE: I had to remove this line of code during development otherwise error: 'ModuleNotFoundError: No module named 'allauth.account.middleware' shown therefore I had to remove during development and add again during deployment
         ```
 
  - 2. Another error as below once above error fixed:
