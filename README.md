@@ -26,7 +26,6 @@
         .env
       ```
 
-
 ## Freeze requirements
 - pip3 freeze > requirements.txt
 
@@ -120,7 +119,8 @@
   - For Some reason image product image directly added while adding the products from admin pannel are not showing in the page 
     - as a temporary solution first product will be added with image, size, color and stock and then save, after then select Product images option on admin and select the Variation to match the product variation and then save , this will ensure that all images will display correctly 
     - NOTE : if multiple images for the product then first image of the product will be added to basket and checkout success 
-  - Sort by A-Z and Z-A not working : NOT FIXED YET
+  - Sort by A-Z and Z-A not working : __NOT FIXED YET__
+  - User's Information not populating in the form field on my account option on profile app once user login, only order history showing but not the personal/delivery information : __NOT FIXED YET__
 
 ## Issues and resolution
 

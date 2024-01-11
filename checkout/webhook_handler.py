@@ -6,6 +6,7 @@ from django.conf import settings
 
 from .models import Order, OrderLineItem
 from product.models import Product
+from profiles.models import UserProfile
 
 import json
 import time
@@ -65,7 +66,7 @@ class StripeWebhookHandler:
         profile = None
         username = intent.metadata.username
         if username != 'AnonymousUser':
-            # profile = UserProfile.objects.get(user__username=username)
+            profile = UserProfile.objects.get(user__username=username)
             if save_info:
                 profile.user_full_name = delivery_details.name
                 profile.user_contact_number = delivery_details.phone
