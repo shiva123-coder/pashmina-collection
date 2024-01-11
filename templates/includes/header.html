@@ -5,9 +5,8 @@
             <!--This col is to display any offer of promotion on top of the carousel-->
             {% for offer in offertext %}
                 <h3 class="offer-text text-center pb-4 display-inline">
-                    {{ offer.offer_title1 }}
-                    {% if offer.offer_title2 %}
-                        <span class="d-none">{{ offer.offer_title2 }}</span>
+                    {% if offer.offer_title1 %}
+                        <span class="">{{ offer.offer_title2 }}</span>
                     {% endif %}
                     {% if offer.offer_title2 %}
                         <span class="d-none">{{ offer.offer_title3 }}</span>

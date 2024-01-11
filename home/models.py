@@ -31,6 +31,7 @@ class Carousel(models.Model):
         verbose_name_plural = 'Carousel'
         
     image = models.ImageField(null=True, blank=True)
+    video = models.FileField(upload_to='carousel_videos/', null=True, blank=True)
     carousel_number = models.IntegerField(null=False, blank=False, default='0')
     image_class = models.TextField(max_length=180, default='If carousel number = 1 then image class = image_first and css_class = first')
     title = models.TextField(max_length=500, null=True, blank=True,)
@@ -42,10 +43,11 @@ class Carousel(models.Model):
     btn_sub_second = models.TextField(max_length=200, null=True, blank=True, default='Important : use this button for 2nd carousel image only')
     btn_main_third = models.TextField(max_length=200, null=True, blank=True, default='Important : use this button for 3th carousel image only')
     btn_sub_third = models.TextField(max_length=200, null=True, blank=True, default='Important : use this button for 3th carousel image only')
-    btn_main_fourth = models.TextField(max_length=200, null=True, blank=True, default='Important : use this button for 4th carousel image only')
-    btn_sub_fourth = models.TextField(max_length=200, null=True, blank=True, default='Important : use this button for 4th carousel image only')
     css_class = models.TextField(max_length=50)
     
+    def has_image_or_video(self):
+        return self.image or self.video
+
     class Meta:
         ordering = ['carousel_number']
     
@@ -54,39 +56,25 @@ class Carousel(models.Model):
     
   
   
-# 1st Section below Carousel
-class InfoCard(models.Model):
+class Cards(models.Model):
+    
     class Meta:
         """
         adjust the name.
+        override django from adding s to the end of the classname
         this will be shown on django admin.
         """
-        verbose_name_plural = '1st Section below Carousel on Homepage'
+        verbose_name_plural = 'Card'
+    
+    id = models.AutoField(primary_key=True)
     image = models.ImageField(null=True, blank=True)
-    css_class = models.CharField(max_length=50, null=True, blank=True,)
-    title = models.TextField(max_length=500, null=True, blank=True,)
-    description_first = models.TextField(null=True, blank=True, max_length=10000)
-    description_second = models.TextField(null=True, blank=True, max_length=10000)
+    title = models.TextField(max_length=500, null=True, blank=True)
+    heading = models.TextField(max_length=500, null=True, blank=True)
+    description = models.TextField(max_length=10000, null=True, blank=True)
+    btn_card = models.TextField(max_length=100, null=True, blank=True)
     
     def __str__(self):
-        return  self.title
+        return self.title
     
-    
-# 2nd Section below Carousel
-class IntroCard(models.Model):
-    class Meta:
-        """
-        adjust the name.
-        this will be shown on django admin.
-        """
-        verbose_name_plural = '2nd Section below Carousel on Homepage'
-    image = models.ImageField(null=True, blank=True)
-    css_class = models.CharField(max_length=50, null=True, blank=True,)
-    title = models.TextField(max_length=500, null=True, blank=True,)
-    description = models.TextField(null=True, blank=True, max_length=10000)
-    
-    def __str__(self):
-        return  self.title
-    
-    
+
 

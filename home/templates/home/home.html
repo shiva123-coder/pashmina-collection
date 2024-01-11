@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_second.html" %}
 {% load static %}
 
 {% block extra_css_home %}
@@ -7,6 +7,21 @@
 {% endblock %}
 
 {% block content %}
+    <!--search field-->
+    <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 search-box">
+        <form method="GET" action="{% url 'all_products' %}">
+            <div class="input-group w-100">
+                <input class="form-control border borderwhite search-field" type="text" name="q" placeholder="Search">
+                <div class="input-group-append">
+                    <button class="form-control btn btn-black border border-white search-btn" type="submit">
+                        <span class="icon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="container-fluid container-carousel">
         <!---------------------------Bootstrap Carousel used for image slider----------------------------->
         <div id="carouselhomeCardIndicators" class="carousel slide" data-ride="carousel" data-interval="7000">
@@ -20,13 +35,20 @@
                 <!-- Carousel Slider carousel -->
                 {% for carousel in carousels %}
                     <div class="carousel-item carousel-home {% if forloop.counter0 == 0 %} active {% endif %}">
-                    {% if carousel.image %}
-                        <img src="{{ carousel.image.url }}" class="{{ carousel.image_class }} w-100 carousel-image" alt="image">
+                    {% if carousel.has_image_or_video %}
+                        {% if carousel.image %}
+                            <img src="{{ carousel.image.url }}" class="{{ carousel.image_class }} w-100 carousel-media" alt="image">
+                        {% elif carousel.video %}
+                            <video width="100%" height="100%" preload="auto" autoplay muted loop playsinline class="w-100 carousel-media">
+                                <source src="{{ carousel.video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        {% endif %}
                     {% else %}
-                        <img class="carousel-image" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
+                    <img class="carousel-image" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
                     {% endif %}
                     <div class="banner-text {{ carousel.css_class }} ">
-                        <h1 class="text-main text-center text-capitalize display-3 sign" id="{{ carousel.id }}">{{ carousel.title }}</h1>
+                        <h1 class="text-white text-center text-capitalize display-3 sign" id="{{ carousel.id }}">{{ carousel.title }}</h1>
                         {% if carousel.description %}
                             <p class="banner-sub-text text-center h3 text-main open-text"><strong class="text-desc text-main">{{ carousel.description }}</strong></p>
                         {% endif %}
@@ -62,49 +84,6 @@
                                     </a>
                                 {% endif %}
                             {% endif %}
-                            <!--Buttond for 3rd carousel/If and whenever needed-->
-                            {% if carousel.css_class == 'third' %}
-                                {% if carousel.btn_main_third %}
-                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-third">
-                                        <strong class="h4 btn-main-third">{{ carousel.btn_main_third }}</strong>
-                                    </a>
-                                {% endif %}
-                                <span>
-                                {% if carousel.btn_sub %}
-                                    <a href="tel:+447470381691" class="btn btn-info mt-3 btn-sub-third">
-                                        <strong class="h4 btn-sub-third"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_third }}</strong>
-                                    </a>
-                                {% endif %}
-                            {% endif %}
-                            <!--Buttond for 4th carousel/If and whenever needed-->
-                            {% if carousel.css_class == 'fourth' %}
-                                {% if carousel.btn_main_fourth %}
-                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-fourth">
-                                        <strong class="h4 btn-main-fourth p2">{{ carousel.btn_main_fourth }}</strong>
-                                    </a>
-                                {% endif %}
-                                <span>
-                                {% if carousel.btn_sub %}
-                                    <a href="tel:07470381691" class="btn btn-primary mt-3 btn-sub-fourth">
-                                        <strong class="h4 btn-sub-fourth"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_fourth }}</strong>
-                                    </a>
-                                {% endif %}
-                            {% endif %}
-                            <!--Buttond for 5th carousel/If and whenever needed-->
-                            {% if carousel.css_class == 'fifth' %}
-                                {% if carousel.btn_main_fifth %}
-                                    <a href="" class="btn btn-primary mt-3 mr-3 btn-main-fifth">
-                                        <strong class="h4 btn-main-fifth"><i class="fas fa-calendar-check mr-2"></i>{{ carousel.btn_main_fifth }}</strong>
-                                    </a>
-                                {% endif %}
-                                <span>
-                                {% if carousel.btn_sub %}
-                                    <a href="tel:07470381691" class="btn btn-primary mt-3 btn-sub-fifth">
-                                        <strong class="h4 btn-sub-fifth"><i class="fas fa-mobile-alt mr-2"></i>{{ carousel.btn_sub_fifth }}</strong>
-                                    </a>
-                                {% endif %}
-                            {% endif %}
-                            </span>
                         </p>
                     </div>
                 </div>
@@ -121,72 +100,55 @@
             </a>
         </div>
     </div>
-    <!-- 1st section below carousel (for md, lg and xl device only)-->
-    <div class="container-fluid info-container-main d-none d-md-block">
-        <div class="container info-container">
-            {% for info in infocard %}
-                {% if forloop.counter|divisibleby:2 %}
-                    <!-- For even iterations, reverse the order of image and text (text on right and image on left) -->
-                    <div class="info-text">
-                        <div class="text-left">
-                            <h1 class="text-main info-heading">{{ info.title }}</h1>
-                        </div>
-                        <p class="text-main h3">{{ info.description_first }}</p>
-                        <p class="text-main h3">{{ info.description_second }}</p>
-                    </div>
-                    <div class="info-img">
-                        <img src="{{ info.image.url }}" alt="Image">
-                    </div>
-                {% else %}
-                    <!-- For odd iterations, maintain the original order  (text on left and image on right)-->
-                    <div class="info-img">
-                        <img src="{{ info.image.url }}" alt="Image">
-                    </div>
-                    <div class="info-text">
-                        <div class="text-left">
-                            <h1 class="text-main info-heading">{{ info.title }}</h1>
-                        </div>
-                        <p class="text-main h3">{{ info.description_first }}</p>
-                        <p class="text-main h3">{{ info.description_second }}</p>
-                    </div>
-                {% endif %}
-            {% endfor %}
+    <!--Why choose us section-->
+    <div class="container-fluid container-second">
+        <div class="row row-card-heading">
+            <div class="col">
+                <h1 class=" text-main heading-card-main font-weight-bold">Lorem Ipsum
+                    <hr class="hr-2">
+                </h1>
+            </div>
         </div>
-    </div>
-    <!-- 1st section below carousel (for small/mobile device only-->
-    <div class="container-fluid info-container-main d-block d-md-none">
-        {% for info in infocard %}
-            <div class="info-text">
-                <div class="text-left">
-                    <h1 class="text-main info-heading">{{ info.title }}</h1>
-                </div>
-                <p class="text-main h3">{{ info.description_first }}</p>
-                <p class="text-main h3">{{ info.description_second }}</p>
-            </div>
-            <div class="info-img">
-                <img src="{{ info.image.url }}" alt="Image">
-            </div>
-        {% endfor %}
-    </div>
-    <!-- 2nd section below carousel-->
-    <div class="container-fluid pr-0 pl-0">
-        <div class="row no-gutters align-item-center">
-            {% for intro in introcard %}
-                <div class="col-md-6 col-lg-3">
-                    <div class="intro-item {{ intro.css_class }}">
-                        <div class="intro-icon">
-                        <img class="intro-image pl-4 pr-4" src="{{ intro.image.url }}" alt="image">
+        <div class="row card-row mb-2 pb-3 card-row">
+            {% for card in cards %}
+                <div class="col-sm-6 col-lg-4 col-xl-3 card-col">
+                    <div class="card info-card card-home">
+                        {% if card.image %}
+                            <img src="{{ card.image.url }}" class="card-img-top card-img-top-home" alt="image">
+                        {% else %}
+                            <img class="card-img-top card-img-top-home img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ card.title }}</h5>
+                            <p class="card-text">{{ card.heading }}</p>
+                            <a class="text-center">
+                                <button type="button" class="btn btn-light btn-sm btn-card" data-toggle="modal" data-target="#homeCardModal{{ forloop.counter }}">{{ card.btn_card }}</button>
+                            </a>
                         </div>
-                        <div class="intro-text pl-4 pr-4">
-                            <h1 class="text-main">{{ intro.title }}</h1>
-                            <p class="text-main h4">{{intro.description}}</p>
+                    </div>
+                </div>
+                <!--Modal-->
+                <div class="modal fade" id="homeCardModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="homeCardModalLabel{{ forloop.counter }}" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-main" id="homeCardModalLabel{{ forloop.counter }}">{{ card.heading }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-body text-main">{{ card.description }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalClose">Close</button>
+                        </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
-
     <!--Custom JS file for home app only -->
     <script src="{% static 'home/js/home.js' %}"></script>
 {% endblock %}
