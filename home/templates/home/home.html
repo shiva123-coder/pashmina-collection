@@ -7,21 +7,6 @@
 {% endblock %}
 
 {% block content %}
-    <!--search field-->
-    <div class="col-6 col-lg-4 my-auto py-1 py-lg-0 search-box">
-        <form method="GET" action="{% url 'all_products' %}">
-            <div class="input-group w-100">
-                <input class="form-control border borderwhite search-field" type="text" name="q" placeholder="Search">
-                <div class="input-group-append">
-                    <button class="form-control btn btn-black border border-white search-btn" type="submit">
-                        <span class="icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
     <div class="container-fluid container-carousel">
         <!---------------------------Bootstrap Carousel used for image slider----------------------------->
         <div id="carouselhomeCardIndicators" class="carousel slide" data-ride="carousel" data-interval="7000">
@@ -50,11 +35,26 @@
                     <div class="banner-text {{ carousel.css_class }} ">
                         <h1 class="text-white text-center text-capitalize display-3 sign" id="{{ carousel.id }}">{{ carousel.title }}</h1>
                         {% if carousel.description %}
-                            <p class="banner-sub-text text-center h3 text-main open-text"><strong class="text-desc text-main">{{ carousel.description }}</strong></p>
+                            <p class="banner-sub-text text-center h3 text-main open-text"><strong class="text-desc text-main text-white">{{ carousel.description }}</strong></p>
                         {% endif %}
                         {% if carousel.extra_info %}
                             <p class="banner-sub-text text-center h3 text-main open-text">{{ carousel.extra_info }}</p>
                         {% endif %}
+                            <!--search field-->
+                            <div class="col-6 col-lg-4 mx-auto search-box mt-4 pt-4">
+                                <form method="GET" action="{% url 'all_products' %}">
+                                    <div class="input-group input-group-home">
+                                        <input class="form-control border border-white search-field p-4" type="text" name="q" placeholder="Search">
+                                        <div class="input-group-append">
+                                            <button class="form-control btn btn-black border border-white search-btn" type="submit">
+                                                <span class="icon">
+                                                    <i class="fas fa-search"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         <p class="btn-banner mt-3 text-center">
                             <!--Buttond for 1st carousel/If and whenever needed-->
                             {% if carousel.css_class == 'first' %}
@@ -100,18 +100,32 @@
             </a>
         </div>
     </div>
+    <!--Text paragaraph below carousel -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {% for text in texts %}
+                    <h1 class="text-main mt-4 pt-4 text-center font-weight-bold">{{ text.title }}</h1>
+                    <h3 class="text-main mt-4 pt-4 text-center">{{ text.heading }}</h3>
+                    <p class="text-main mt-4 pt-4">{{ text.description }}</p>
+                    <a href="{% url 'all_products' %}" class="btn btn-info mt-4 p-3 ">
+                        <strong class="h3 text-capitalize">{{ text.btn_text }}</strong>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     <!--Why choose us section-->
     <div class="container-fluid container-second">
         <div class="row row-card-heading">
             <div class="col">
-                <h1 class=" text-main heading-card-main font-weight-bold">Lorem Ipsum
-                    <hr class="hr-2">
+                <h1 class=" text-main heading-card-main font-weight-bold">Why Choose Our Products !
                 </h1>
             </div>
         </div>
         <div class="row card-row mb-2 pb-3 card-row">
             {% for card in cards %}
-                <div class="col-sm-6 col-lg-4 col-xl-3 card-col">
+                <div class="col-sm-6 col-lg-4 col-xl-3 card-col mb-4 mt-4">
                     <div class="card info-card card-home">
                         {% if card.image %}
                             <img src="{{ card.image.url }}" class="card-img-top card-img-top-home" alt="image">

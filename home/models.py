@@ -54,7 +54,25 @@ class Carousel(models.Model):
     def __str__(self):
         return  self.title
     
-  
+
+class TextOnHomepage(models.Model):
+    class Meta:
+        
+        """
+        adjust the name.
+        override django from adding s to the end of the classname
+        this will be shown on django admin.
+        """
+        verbose_name_plural = 'Text below Carousel'
+    
+    title = models.TextField(max_length=500, null=True, blank=True)
+    heading = models.TextField(max_length=500, null=True, blank=True)
+    description = models.TextField(max_length=10000, null=True, blank=True)
+    btn_text = models.TextField(max_length=100, null=True, blank=True)
+    
+    def __str__(self):
+        return  self.title
+    
   
 class Cards(models.Model):
     

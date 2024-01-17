@@ -108,10 +108,15 @@ footer {
 
 /*----Media---*/
 
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .content {
+        margin-top: 8rem;
+    }
+}
+
 @media screen and (max-width: 992px) {
-    .input-group.w-100 {
-        padding-right: 3rem;
-        padding-left: 3rem;
+    .main-nav {
+        margin-top: -4rem;
     }
     header {
         position: fixed;

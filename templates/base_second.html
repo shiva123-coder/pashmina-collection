@@ -88,70 +88,68 @@
         <div id="scroll-icon"><i class="far fa-arrow-alt-circle-up"></i></div>
         <header class="container-fluid">
             <!--navbar brand-->
-            <div id="topnav" class="row bg-wite pt-lg-2 d-flex">
-                <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-                    <a href="{% url 'home' %}" class="nav-link brand-logo mx-auto">
-                    </a>
-                </div>
-                <!--account options with if/else to check users and superusers-->
-                <div class="col-12 col-lg-4 my-auto d-none d-lg-block">
-                    <ul class="list-inline list-unstyled text-center text-lg-right my-0 pr-2">
-                        <li class="list-inline-item ">
-                            <a class="text-main font-weight-bold nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="text-center">
-                                    <div><i class="fas fa-user fa-lg"></i></div>
-                                    <p class="my-0 text-nav">Account</p>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-                               {% if request.user.is_authenticated %}
-                                    {% if request.user.is_superuser %}
-                                        <a href="" class="dropdown-item dropdown-account">Admin</a>
-                                    {% endif %}
-                                        <a href="{% url 'profile' %}" class="dropdown-item dropdown-account">My Account</a>
-                                        <a href="{% url 'account_logout' %}" class="dropdown-item dropdown-account">Logout</a>
-                                {% else %}
-                                    <a href="{% url 'account_signup' %}" class="dropdown-item dropdown-account">Register</a>
-                                    <a href="{% url 'account_login' %}" class="dropdown-item dropdown-account">Login</a>
-                                {% endif %}
-                            </div>
-                        </li>
-                        <!--basket-->
-                        <li class="list-inline-item">
-                            <a class="{% if sum_total %}text-warning font-weight-bold{% else %}text-black{% endif %} nav-link text-main font-weight-bold" href="{% url 'view_basket' %}">
-                                <div class="text-center">
-                                    <div><i class="fas fa-shopping-basket text-nav text-main"></i></div>
-                                    <p class="my-0 text-nav text-main">
-                                        {% if sum_total %}
-                                            £ {{ sum_total|floatformat:2 }}
-                                        {% else %}
-                                            £0.00
-                                        {% endif %}
-                                    </p>
-                                </div>
-                            </a>
-                        </li>
-                        <!--blog-->
-                        {% if request.user.is_superuser %}
-                        <li class="list-inline-item">
-                            <a class="text-main font-weight-bold nav-link" href="">
-                                <div class="text-center">
-                                    <div><i class="fas fa-blog"></i></div>
-                                    <p class="my-0">Blog</p>
-                                </div>
-                            </a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-            <div class="row bg-wite">
-                <!--main nav-->
+            <div id="topnav" class="row bg-wite pt-3 pb-3 d-flex">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
+                    <!--Display brand logo only on large/x-lg screen-->
+                    <a class="navbar-brand text-main font-weight-bold mx-auto d-none d-lg-block" href="#">Brand Logo Here</a>
+                    <!--Display Business Name only on small and medium screen-->
+                    <a class="navbar-brand text-main font-weight-bold mx-auto d-block d-lg-none" href="#">Business name</a>              
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     {% include 'includes/nav.html' %}
+                
+                    <!--account options with if/else to check users and superusers, basket and blog-->
+                    <div class="ml-auto d-none d-lg-block">
+                        <ul class="list-inline list-unstyled text-center text-lg-right my-0 pr-2">
+                            <li class="list-inline-item ">
+                                <a class="text-main font-weight-bold nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <div class="text-center">
+                                        <div><i class="fas fa-user fa-lg"></i></div>
+                                        <p class="my-0 text-nav">Account</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu border-0" aria-labelledby="user-options">
+                                {% if request.user.is_authenticated %}
+                                        {% if request.user.is_superuser %}
+                                            <a href="" class="dropdown-item dropdown-account">Admin</a>
+                                        {% endif %}
+                                            <a href="{% url 'profile' %}" class="dropdown-item dropdown-account">My Account</a>
+                                            <a href="{% url 'account_logout' %}" class="dropdown-item dropdown-account">Logout</a>
+                                    {% else %}
+                                        <a href="{% url 'account_signup' %}" class="dropdown-item dropdown-account">Register</a>
+                                        <a href="{% url 'account_login' %}" class="dropdown-item dropdown-account">Login</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                            <!--basket-->
+                            <li class="list-inline-item">
+                                <a class="{% if sum_total %}text-warning font-weight-bold{% else %}text-black{% endif %} nav-link text-main font-weight-bold" href="{% url 'view_basket' %}">
+                                    <div class="text-center">
+                                        <div><i class="fas fa-shopping-basket text-nav text-main"></i></div>
+                                        <p class="my-0 text-nav text-main">
+                                            {% if sum_total %}
+                                                £ {{ sum_total|floatformat:2 }}
+                                            {% else %}
+                                                £0.00
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </a>
+                            </li>
+                            <!--blog, currently hidden using d-none class-->
+                            {% if request.user.is_superuser %}
+                            <li class="list-inline-item d-none">
+                                <a class="text-main font-weight-bold nav-link" href="">
+                                    <div class="text-center">
+                                        <div><i class="fas fa-blog"></i></div>
+                                        <p class="my-0">Blog</p>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
                 </nav>
             </div>
         </header>        
