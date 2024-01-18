@@ -58,3 +58,22 @@ img.card-img-top.no-image.img-fluid {
     border-color: #007bff;
     /* Border color for the selected thumbnail */
 }
+
+
+/*----Media---*/
+
+@media screen and (min-width: 992px) {
+    .product-sub-form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .product-sub {
+        text-align: center;
+    }
+    .product-sub-form {
+        margin: auto;
+        width: 50%;
+    }
+}

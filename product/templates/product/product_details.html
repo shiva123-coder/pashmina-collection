@@ -16,10 +16,11 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+    <div class="container">
         <div class="row mt-4 pt-4">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+            <div class="col-12 col-md-6">
                 <!-- Main Product Image -->
+                <p class="h4 font-weight-bold pb-0 text-center text-uppercase">{{ product.product_name }}</p>
                 <img src="{{ images.0.image.url }}" class="d-block img-fluid main-image" alt="{{ product.product_name }}" data-color="{{ images.0.color }}">
                 <!-- Thumbnail Slider -->
                 <div class="thumbnail-container">
@@ -34,17 +35,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="product-info mb-4 mt-md-5">
-                    <p class="h4 font-weight-bold pb-0 d-none d-md-block">{{ product.product_name }}</p>
+            <div class="col-12 col-md-6">
+                <div class="product-info mb-4 mt-5">
                     <p class="display-6 pt-3 mt-3"></p>
-                    <p class="display-6 mt-3 font-weight-bold">£ {{ product.price }}</p>
-                    <p class="display-6 mb-0 font-weight-bold">{{ product.heading }}</p>
-                    <p class="display-6">{{ product.description }}</p>
+                    <p class="display-6 mt-3 font-weight-bold product-sub text-main"><strong class="text-main">Price </strong> : £ {{ product.price }}</p>
+                    <p class="display-6 mb-0 font-weight-bold product-sub">{{ product.heading }}</p>
+                    <p class="display-6 product-sub">{{ product.description }}</p>
 
                     <form class="form" action="{% url 'add_to_basket' product.id %}" method="POST" id="add-to-basket-form">
                         {% csrf_token %}
-                        <div class="form-row">
+                        <div class="form-row product-sub-form">
                             <!-- Option to select size -->
                             <div class="col-12">
                                 <p class="mt-3"><strong>Size:</strong></p>
