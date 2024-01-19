@@ -106,13 +106,12 @@
                 <div class="col-7 offset-2">
                     <p class="my-0">Basket Total:</p>
                     <p class="my-0">Delivery Charge:</p>
-                    <p class="my-0">Discount:</p>
-                    <p class="my-0">Sub-total:</p>
+                   <p class="my-0">Sub-total:</p>
+                    
                 </div>
                 <div class="col-3">
                     <p class="my-0">£{{ order.total | floatformat:2 }}</p>
                     <p class="my-0">£{{ order.delivery_cost | floatformat:2 }}</p>
-                    <p class="my-0">-£{{ order.discount_amount | floatformat:2 }}</p>
                     <p class="my-0"><strong>£{{ order.sum_total | floatformat:2 }}</strong></p>
                 </div>
             </div>

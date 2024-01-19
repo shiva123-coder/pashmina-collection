@@ -121,9 +121,7 @@ def checkout(request):
         try:
             profile = UserProfile.objects.get(user=request.user)
 
-            # name_of_user = profile.user_full_name
-            # address_of_user = profile.user_address
-
+        
             order_form = OrderForm(initial={
                 'full_name': profile.user_full_name,
                 'email': profile.user.email,
@@ -157,12 +155,15 @@ def checkout_success(request, order_number):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    # if request.user.is_authenticated:
-    profile = UserProfile.objects.get(user=request.user)
-    # connect user's profile to the order
-    order.user_profile = profile
-    order.save()
-
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        #  connect user's profile to the order
+        order.user_profile = profile
+        order.save()
+    else:
+        order.user_email = order.email
+        order.save()
+        
     # save user's info
     if save_info:
         profile_data = {
