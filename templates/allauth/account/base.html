@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block header_main %}
+<div class="overlay"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid allauth-container pl-0 pb-3">
+        <div class="overlay"></div>
+        <div class="row">
+            <div class="col-10 offset-1 col-md-4 offset-md-4">
+                <div class="allauth-form-inner-content">
+                    {% block inner_content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

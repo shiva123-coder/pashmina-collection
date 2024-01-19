@@ -59,7 +59,7 @@
                             <!--Buttond for 1st carousel/If and whenever needed-->
                             {% if carousel.css_class == 'first' %}
                                 {% if carousel.btn_main_first %}
-                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-first">
+                                    <a href="{% url 'all_products' %}" class="btn btn-info mt-3 mr-3 btn-main-first">
                                         <strong class="h4 btn-main-first">{{ carousel.btn_main_first }}</strong>
                                     </a>
                                 {% endif %}

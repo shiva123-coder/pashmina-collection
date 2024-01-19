@@ -106,6 +106,15 @@ footer {
 }
 
 
+/*--Allauth--*/
+
+.wrapper,
+.allauth-login-wrapper,
+.allauth-signup-wrapper {
+    margin-top: 10rem;
+}
+
+
 /*----Media---*/
 
 @media screen and (max-width: 992px) {

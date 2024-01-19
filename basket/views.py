@@ -50,7 +50,7 @@ def add_to_basket(request, product_id):
     else:
         messages.error(request, f"Sorry, we only have only {variation.stock_quantity} stock for {product.product_name} with the selected size and color, please ammend the quantity or choose another variation")
         return redirect(reverse('product_details', args=[product_id]))
-    return redirect(reverse('home'))
+    return redirect(reverse('view_basket'))
 
 
 
