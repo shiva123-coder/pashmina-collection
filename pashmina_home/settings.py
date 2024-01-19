@@ -167,7 +167,7 @@ USE_I18N = True
 USE_TZ = True
 
 # valiables for delivery option
-DELIVERY_COST = 5
+FREE_DELIVERY_OUTSET = 250
 
 # stripe
 STRIPE_CURRENCY = 'gbp'
