@@ -19,7 +19,7 @@
             <p class="display-6">Your basket has {{ product_count }} items</p>
             <div class="item-summary-container">
                 <!-- Refer to context.py file to understand cart_products -->
-                {% for product in cart_products %} 
+                {% for product in basket_products %} 
                     <div class="row">
                         <div class="col-4 col-img-success mb-2 mt-2">
                         {% if product.image %}
