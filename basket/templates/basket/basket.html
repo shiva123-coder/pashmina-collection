@@ -10,7 +10,7 @@
    <div class="container basket-container">
     <div class="row text-center">
         <div class="col">
-            <h2 class="basket-title mt-5 pb-4 pt-4 font-weight-bold">Order Basket</h2>
+            <h2 class="basket-title mt-5 pb-4 pt-4 font-weight-bold first-text">Order Basket</h2>
             <hr class="block-divider">
         </div>
     </div>
@@ -28,28 +28,25 @@
                     <div class="row">
                         <div class="col">
                             {% include "basket/checkout_btn.html" %}
-                            <p class="text-small ">A summary of your basket contents is below</p>
+                            <p class="fourth-text mt-4 pt-4 pb-4">A summary of your basket contents is below</p>
                         </div>
                     </div>
                     {% for product in basket_products %}
                         <div class="row">
                             <div class="col-12 mb-2">
-                                <p class="text-center font-weight-bold text-main">{{ product.product.product_name }}</p>
+                                <p class="text-center font-weight-bold text-main text-capitalize">{{ product.product.product_name }}</p>
                             </div>
                             <div class="col-12 mb-2">
                                 {% include "basket/image.html" %}
                             </div>
-                            <div class="col-12 mb-2">
-                                {% include "basket/product_info.html" %}
-                            </div>
-                            <div class="col-12 order-sm-last">
+                            <div class="col-12 order-sm-last fourth-text">
                                 <p class="text-center">Each : £ {{ product.product.price }}</p>
-                                <p><strong>Total : </strong>£ {{ product.product.price | calculate_total:product.quantity }}</p>
+                                <p><strong>Total : £ {{ product.product.price | calculate_total:product.quantity }}</strong></p>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 fourth-text">
                                Size: {{ product.selected_size }}
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 fourth-text">
                                 Color: {{ product.selected_color }}
                             </div>
                             <div class="col-12">
@@ -58,6 +55,9 @@
                         </div>
                         <div class="row"><div class="col"><hr></div></div>
                     {% endfor %}
+                    <a class="btn btn-black rounded-0 btn-lg">
+                    </a>
+                    <a href="{% url 'checkout' %}"><input type="button" class="card-pay-option btn-lg fourth-text pt-3 mt-3" value="Pay Now!"></a>
                 </div>
                 <!------hide basket details on small devices-->
                 <!-----bootstrap table----->
@@ -65,8 +65,8 @@
                     <table class="table table-sm table-borderless">
                         <thead class="text-main font-weight-bold">
                             <tr>
-                                <th scope="col">Item</th>
                                 <th scope="col"></th>
+                                <th scope="col">Product</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Size</th>
@@ -81,7 +81,7 @@
                                     {% include "basket/image.html" %}
                                 </td>
                                 <td class="py-3">
-                                    {% include "basket/product_info.html" %}
+                                    <p class="my-0 third-text text-capitalize">{{ product.product.product_name }}</p>
                                 </td>
                                 <td class="py-3">
                                     <p class="my-0">£ {{ product.product.price }}</p>

@@ -61,6 +61,28 @@ header {
     font-size: 1.6rem;
 }
 
+.first-text {
+    color: var(--main);
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.second-text {
+    color: var(--main);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.third-text {
+    color: var(--main);
+    font-size: 2rem;
+}
+
+.fourth-text {
+    color: var(--main);
+    font-size: 1.75rem;
+}
+
 .text-dark {
     font-size: 1.25rem;
 }
@@ -89,6 +111,10 @@ header {
 
 /*--Navbar---*/
 
+.nav-item {
+    font-size: 2rem;
+}
+
 .dropdown-item {
     color: var(--main);
     font-size: 1.5rem;
@@ -99,19 +125,18 @@ header {
 }
 
 
+/*--close button on django message container--*/
+
+.close {
+    font-size: 2rem;
+    color: red;
+}
+
+
 /*-- Footer--*/
 
 footer {
     background: gold;
-}
-
-
-/*--Allauth--*/
-
-.wrapper,
-.allauth-login-wrapper,
-.allauth-signup-wrapper {
-    margin-top: 10rem;
 }
 
 

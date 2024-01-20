@@ -122,7 +122,7 @@
   - Sort by A-Z and Z-A not working : __NOT FIXED YET__
   - User's Information not populating in the form field on my account option on profile app once user login, only order history showing but not the personal/delivery information : __NOT FIXED YET__
   - When clicked on magniyfying glass icon on search field, form automatically submitted and render all products even if no input on search field, __NOT FIXED YET__
-
+  
 ## Issues and resolution
 
 ### Issue with virtual env set up, 

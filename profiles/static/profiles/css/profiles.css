@@ -1,5 +1,5 @@
 .profile-container {
-    margin-top: -5rem;
+    margin-top: 8rem;
     margin-bottom: 3rem;
 }
 
@@ -17,4 +17,10 @@
     max-height: 450px;
     overflow-y: scroll;
     margin-bottom: 50px;
+}
+
+input#id_user_contact_number,
+input#id_user_address,
+input#id_user_postal_code {
+    font-size: 1.75rem;
 }

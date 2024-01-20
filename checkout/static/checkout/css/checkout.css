@@ -49,6 +49,16 @@ documentation and modified as per project requirement (start)--*/
     font-weight: bold;
 }
 
+input#id_full_name,
+input#id_email,
+input#id_contact_number,
+input#id_street_address,
+input#id_postal_code,
+input.InputElement.is-empty.Input.Input--empty {
+    font-size: 1.75rem;
+    font-weight: normal;
+}
+
 
 /*-----End-----*/
 
