@@ -11,7 +11,7 @@ from profiles.models import UserProfile
 
 class Order(models.Model):
     """ create order model"""
-    order_number = models.CharField(max_length=32,
+    order_number = models.CharField(max_length=8,
                                     null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
@@ -39,7 +39,7 @@ class Order(models.Model):
         """
         utilize UUID to create random order number
         """
-        return uuid.uuid4().hex.upper()
+        return uuid.uuid4().hex.upper()[:8]
 
     def save(self, *args, **kwargs):
         """
