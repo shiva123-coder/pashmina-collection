@@ -1,0 +1,35 @@
+/*--Allauth--*/
+
+.wrapper,
+.allauth-login-wrapper {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+
+.allauth-signup-wrapper {
+    margin-top: 5rem;
+    margin-bottom: 8rem;
+}
+
+form.login.login-form,
+form#signup_form,
+form#signup_form input,
+input#id_login,
+input#id_password,
+.stripe-style-input,
+input#id_email,
+div#div_id_email,
+label.requiredField {
+    font-size: 1.75rem;
+}
+
+label.form-check-label {
+    margin-left: .75rem;
+}
+
+input[type="submit"] {
+    padding: .5rem;
+    font-size: 1.25rem;
+}
+
+.wrapper-password-change {}

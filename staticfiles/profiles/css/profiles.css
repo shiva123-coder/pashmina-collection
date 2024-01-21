@@ -1,0 +1,26 @@
+.profile-container {
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+}
+
+.asteriskField {
+    display: none;
+}
+
+.requiredField {
+    color: #000000;
+    font-weight: bold;
+}
+
+.order-history-table,
+.product-summary-container {
+    max-height: 450px;
+    overflow-y: scroll;
+    margin-bottom: 50px;
+}
+
+input#id_user_contact_number,
+input#id_user_address,
+input#id_user_postal_code {
+    font-size: 1.75rem;
+}

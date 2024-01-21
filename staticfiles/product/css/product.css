@@ -1,3 +1,13 @@
+.product-display-container {
+    margin-bottom: 5rem;
+    margin-top: -1rem;
+}
+
+.product-details-container {
+    margin-bottom: 8rem;
+    margin-top: -3rem;
+}
+
 li.list {
     display: flex;
     flex-wrap: wrap;
@@ -57,4 +67,37 @@ img.card-img-top.no-image.img-fluid {
 .thumbnail-slider img.active {
     border-color: #007bff;
     /* Border color for the selected thumbnail */
+}
+
+select#sizeDropdown,
+select#colorDropdown,
+input#id_qty_1,
+button#increase-qty_1,
+button#decrease-qty_1 {
+    font-size: 1.25rem;
+}
+
+
+/*----Media---*/
+
+@media screen and (min-width: 767px) and (max-width: 992px) {
+    .product-details-container {
+        margin-top: 10rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .product-sub-form {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .product-sub {
+        text-align: center;
+    }
+    .product-sub-form {
+        margin: auto;
+        width: 50%;
+    }
 }
