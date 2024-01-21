@@ -69,6 +69,14 @@ img.card-img-top.no-image.img-fluid {
     /* Border color for the selected thumbnail */
 }
 
+select#sizeDropdown,
+select#colorDropdown,
+input#id_qty_1,
+button#increase-qty_1,
+button#decrease-qty_1 {
+    font-size: 1.25rem;
+}
+
 
 /*----Media---*/
 
