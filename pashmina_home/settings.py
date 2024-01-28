@@ -242,4 +242,4 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# test 
+# test for test
