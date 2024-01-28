@@ -76,6 +76,10 @@
    }
    /*-- Cards on homepage, below carousel --*/
    
+   .container-second {
+       padding-bottom: 8rem;
+   }
+   
    .heading-card-main {
        margin-top: 5rem;
        text-align: center;

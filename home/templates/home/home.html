@@ -106,6 +106,7 @@
             <div class="col">
                 {% for text in texts %}
                     <h1 class="text-main mt-4 pt-4 text-center font-weight-bold first-text">{{ text.title }}</h1>
+                    <hr class="w-25 mx-auto mb-4">
                     <h3 class="text-main mt-4 pt-4 text-center second-text">{{ text.heading }}</h3>
                     <p class="text-main mt-4 pt-4 third-text">{{ text.description }}</p>
                     <a href="{% url 'all_products' %}" class="btn btn-info mt-4 p-3 ">
@@ -117,15 +118,16 @@
     </div>
     <!--Why choose us section-->
     <div class="container-fluid container-second">
-        <div class="row row-card-heading">
+        <div class="row justify-content-around row-card-heading">
             <div class="col">
                 <h1 class=" text-main heading-card-main font-weight-bold first-text">Why Choose Our Products !
                 </h1>
+                <hr class="w-25 mx-auto mb-4">
             </div>
         </div>
         <div class="row card-row mb-2 pb-3 card-row">
             {% for card in cards %}
-                <div class="col-sm-6 col-lg-4 col-xl-3 card-col mb-4 mt-4">
+                <div class="col-sm-6 col-xl-3 card-col mb-4 mt-4">
                     <div class="card info-card card-home">
                         {% if card.image %}
                             <img src="{{ card.image.url }}" class="card-img-top card-img-top-home" alt="image">

@@ -36,7 +36,7 @@ def basket_contents(request):
 
     # Calculate total price including any delivery charge and discount
     if total < settings.FREE_DELIVERY_OUTSET and basket_products:
-        delivery_cost = 5
+        delivery_cost = 0.10
         free_delivery_eligibility = settings.FREE_DELIVERY_OUTSET - total
     else:
         delivery_cost = 0
