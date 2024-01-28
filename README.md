@@ -386,6 +386,13 @@
 
     ```
 
+##  Contents and images on page were removed from deployed site every time after every git commit and push, which means once any update on project and git commit and push then all contents and images were required to upload again every time:
+  - Above issue was caused by missing database url or Environmental variables of Render setting, once added as below then issue was solved:
+    ```
+      Key = DATABASE_URL
+      Value = database url created for project (on ElephantSQL)
+    ```
+
 ## STRIPE INSTALLATION :
 - I have used scoop to install stripe on VScode using [Stripe Doc](https://stripe.com/docs/stripe-cli#install)
   - Below steps were taken
