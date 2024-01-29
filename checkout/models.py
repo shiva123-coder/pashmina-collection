@@ -56,10 +56,10 @@ class Order(models.Model):
         """
         self.total = self.lineitems.aggregate(
             Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        if self.total < settings.FREE_DELIVERY_OUTSET:
-            self.delivery_cost = 5
-        else:
-            self.delivery_cost = 0
+        # if self.total < settings.FREE_DELIVERY_OUTSET:
+        #     self.delivery_cost = 5
+        # else:
+        #     self.delivery_cost = 0
 
         self.sum_total = self.total + self.delivery_cost 
         self.save()
