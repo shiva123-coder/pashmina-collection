@@ -40,6 +40,7 @@ class Order(models.Model):
         utilize UUID to create random order number
         """
         return uuid.uuid4().hex.upper()[:8]
+        # [:8] used to restrict order number to 8 characters
 
     def save(self, *args, **kwargs):
         """
