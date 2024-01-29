@@ -162,11 +162,11 @@
                     {% if request.user.is_superuser %}
                         <a href="" class="dropdown-item dropdown-account">Admin</a>
                     {% endif %}
-                        <a href="" class="dropdown-item dropdown-account">My Account</a>
-                        <a href="" class="dropdown-item dropdown-account">Logout</a>
+                        <a href="{% url 'profile' %}" class="dropdown-item dropdown-account">My Account</a>
+                        <a href="{% url 'account_logout' %}" class="dropdown-item dropdown-account">Logout</a>
                 {% else %}
-                    <a href="" class="dropdown-item dropdown-account">Register</a>
-                    <a href="" class="dropdown-item dropdown-account">Login</a>
+                    <a href="{% url 'account_signup' %}" class="dropdown-item dropdown-account">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item dropdown-account">Login</a>
                 {% endif %}
             </div>
         </li>

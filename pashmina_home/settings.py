@@ -215,7 +215,7 @@ if "USE_AWS" in os.environ:
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 if 'DEVELOPMENT' in os.environ:
-    DEFAULT_FROM_EMAIL = 'neupanekitchen@example.com'
+    DEFAULT_FROM_EMAIL = 'hamropashmina24@example.com'
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -242,4 +242,3 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# test for test
