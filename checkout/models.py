@@ -4,6 +4,8 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 
+from decimal import Decimal
+
 
 from product.models import Product, ProductImage
 from profiles.models import UserProfile
@@ -57,10 +59,10 @@ class Order(models.Model):
         """
         self.total = self.lineitems.aggregate(
             Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        # if self.total < settings.FREE_DELIVERY_OUTSET:
-        #     self.delivery_cost = 5
-        # else:
-        #     self.delivery_cost = 0
+        if self.total < settings.FREE_DELIVERY_OUTSET:
+            self.delivery_cost = 5
+        else:
+            self.delivery_cost = 0
 
         self.sum_total = self.total + self.delivery_cost 
         self.save()

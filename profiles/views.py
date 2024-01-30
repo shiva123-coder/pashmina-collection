@@ -55,6 +55,9 @@ def order_history(request, order_number):
     context = {
         "order": order,
         "order_history": True,
+        "total": order.total,
+        "delivery_cost": order.delivery_cost,
+        "sum_total": order.sum_total,
     }
 
     return render(request,

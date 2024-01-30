@@ -393,6 +393,35 @@
       Value = database url created for project (on ElephantSQL)
     ```
 
+
+## Issue with delivery cost calculation as delivery cost did not show on user profile on completed order eventhough it was shown and calculated correctly during checkout:
+- Issue was triggered due to update_sum_total method on checkout model was missing logic to update delivery cost, however logic was added on context.py file inside the basket app therefore it was only working on basket and checkout,
+
+  - below line of code was added:
+
+    ```
+      def update_sum_total(self):
+        """
+        Update sub-total each time a new line item is added
+        """
+        self.total = self.lineitems.aggregate(
+            Sum('lineitem_total'))['lineitem_total__sum'] or 0
+
+        ## below if statement was added to fix above issue 
+
+        if self.total < settings.FREE_DELIVERY_OUTSET:
+            self.delivery_cost = Decimal('0.10')
+        else:
+            self.delivery_cost = 0
+
+        self.sum_total = self.total + self.delivery_cost 
+        self.save()
+
+        NOTE: if delivery cost need to be £ then simply update as below:
+          self.delivery_cost = 5
+    ```
+
+
 ## STRIPE INSTALLATION :
 - I have used scoop to install stripe on VScode using [Stripe Doc](https://stripe.com/docs/stripe-cli#install)
   - Below steps were taken
