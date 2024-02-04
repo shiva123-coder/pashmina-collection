@@ -421,6 +421,45 @@
           self.delivery_cost = 5
     ```
 
+## Issue with email confirnmation once order completed as no email was sent and upon checking on stripe dashboard there was error 500 on payment_intent_successed and webhook delivery failed was shown even if payment was successful
+- I have found the solution of above issue on Code institue Slack Community as below : 
+  - After a Stripe update on November 16, 2022, the charges attribute is no longer available directly from the payment intent.
+  - PLEASE NOTE: If it was previously working (ie you're on the older version of the Stripe API), then this update is unnecessary.
+  - REMEMBER to import Stripe at the top of the webhook_handler.py
+  - To get the billing_details you will need to update the payment_intent_succeeded method within the StripeWH_Handler class in webhook_handler.py
+
+
+    ```
+      BEFORE :
+
+      intent = event.data.object
+      payment_intent_id = intent.id
+      basket = intent.metadata.basket
+      save_info = intent.metadata.save_info
+
+      billing_details = intent.charges.data[0].billing_details
+      delivery_details = intent.shipping
+      sum_total = round(intent.charges.data[0].amount/100, 2)
+    ```
+          	  
+    ```
+
+    AFTER : 
+    intent = event.data.object
+    payment_intent_id = intent.id
+    basket = intent.metadata.basket
+    save_info = intent.metadata.save_info
+
+    # Get the Charge object
+    stripe_charge = stripe.Charge.retrieve(
+        intent.latest_charge
+    )
+
+    billing_details = stripe_charge.billing_details # updated
+    shipping_details = intent.shipping
+    grand_total = round(stripe_charge.amount / 100, 2) # updated
+
+    ```
 
 ## STRIPE INSTALLATION :
 - I have used scoop to install stripe on VScode using [Stripe Doc](https://stripe.com/docs/stripe-cli#install)

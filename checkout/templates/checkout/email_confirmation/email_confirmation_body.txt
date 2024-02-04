@@ -2,22 +2,21 @@
 
 Hi {{ order.full_name }}!
 
-Thank You for your order with Neupane's Kitchen. Your order information is below :
+Thank You for your order with Pashmina Collection. Your order information is below :
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
 
 Order Total: £ {{ order.total | floatformat:2 }}
-Home Delivery Cost: £ {{ order.delivery_cost | floatformat:2 }}
-Discount: £ {{ order.discount_amount | floatformat:2  }}
+Delivery Cost: £ {{ order.delivery_cost | floatformat:2 }}
 Total Price: £ {{ order.sum_total | floatformat:2 }}
 
-Your order will be delivered to the following delivery address.
+Your order will be delivered to the following delivery address within 5-7 business days
 
 {{ order.street_address }}
 {{ order.postal_code }}
 
-We have got your contact number as {{ order.contact_number }}, you will receive text on your phone once your order is out for delivery.
+We have got your contact number as {{ order.contact_number }}.
 
 Please feel free to contact us if you have any questions.
 
