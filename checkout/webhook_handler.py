@@ -32,7 +32,8 @@ class StripeWebhookHandler:
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
-            [customer_email, 'neupanedrivingschool@gmail.com']
+            [customer_email, 'hamropashmina24@gmail.com
+']
         )
 
     def handle_event(self, event):
