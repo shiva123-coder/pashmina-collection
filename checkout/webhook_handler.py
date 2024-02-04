@@ -32,7 +32,7 @@ class StripeWebhookHandler:
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
-            [customer_email, 'hamropashmina24@gmail.com']
+            [customer_email]
         )
 
     def handle_event(self, event):
@@ -81,7 +81,7 @@ class StripeWebhookHandler:
             try:
                 order = Order.objects.get(
                     full_name__iexact=delivery_details.name,
-                    email__iexact=delivery_details.email,
+                    email__iexact=billing_details.email,
                     contact_number__iexact=delivery_details.phone,
                     street_address__iexact=delivery_details.address.line1,
                     postal_code__iexact=delivery_details.address.postal_code,
@@ -111,7 +111,7 @@ class StripeWebhookHandler:
                         full_name=delivery_details.name,
                         user_profile=profile,
                         contact_number=delivery_details.phone,
-                        email=delivery_details.email,
+                        email=billing_details.email,
                         street_address=delivery_details.address.line1,
                         postal_code=delivery_details.address.postal_code,
                         original_basket=basket,
