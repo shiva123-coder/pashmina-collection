@@ -10,4 +10,8 @@ urlpatterns = [
     path('cache_checkout_data/', views.cache_checkout_data,
         name='cache_checkout_data'),
     path('wh/', webhook, name='webhook'),
+<<<<<<< HEAD
 ]
+=======
+]
+>>>>>>> 746861c14f393f9b9eef6d7f22c5fcbcdebe3f3d
