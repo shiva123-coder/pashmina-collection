@@ -140,6 +140,13 @@
 - command below used to install touch
  - npm install touch-cli -g
 
+### .env file was not loaded on django settings which resulted django errors as all secret keys were stored in .env file however unable to load .env file to settings.
+  - Issue was solved by installing python-dotenv modules as below:
+    1. install python-dotenv by using command 'pip install python-dotenv'
+    2. add below to django settings:
+      - from dotenv import load_dotenv
+      - load_dotenv()
+
 ### image was not displaying when <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.jpg"/>
  - below line of code was needed to add inside the context processor of django setting :
     - ```
@@ -444,20 +451,21 @@
           	  
     ```
 
-    AFTER : 
-    intent = event.data.object
-    payment_intent_id = intent.id
-    basket = intent.metadata.basket
-    save_info = intent.metadata.save_info
+      AFTER : 
+      
+      intent = event.data.object
+      payment_intent_id = intent.id
+      basket = intent.metadata.basket
+      save_info = intent.metadata.save_info
 
-    # Get the Charge object
-    stripe_charge = stripe.Charge.retrieve(
-        intent.latest_charge
-    )
+      # Get the Charge object
+      stripe_charge = stripe.Charge.retrieve(
+          intent.latest_charge
+      )
 
-    billing_details = stripe_charge.billing_details # updated
-    shipping_details = intent.shipping
-    grand_total = round(stripe_charge.amount / 100, 2) # updated
+      billing_details = stripe_charge.billing_details # updated
+      shipping_details = intent.shipping
+      grand_total = round(stripe_charge.amount / 100, 2) # updated
 
     ```
 
