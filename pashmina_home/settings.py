@@ -79,7 +79,6 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware', 
 ]
 
-#test
 
 ROOT_URLCONF = 'pashmina_home.urls'
 
