@@ -76,7 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Remove below line on development and use during deployment only
-    'allauth.account.middleware.AccountMiddleware', 
+    # 'allauth.account.middleware.AccountMiddleware', 
 ]
 
 
