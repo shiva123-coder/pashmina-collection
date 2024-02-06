@@ -1,0 +1,26 @@
+{% extends "base_second.html" %}
+{% load static %}
+
+{% block extra_css_home %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container success-container text-center text-main">
+    <div class="row">
+        <div class="col">
+            <h1 class="mb-3 pb-3">Thank you !</h1>
+            <hr class="w-50 mx-auto">
+            <p class="h3">Your enquiry has been sent</p>
+            <p class="h3">
+                <a href="{% url 'all_products' %}" class="btn btn-info mt-4 p-3 ">
+                    <strong class="h3 text-capitalize">Shop Now !</strong>
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+<!--Custom JS file for home app only -->
+<script src="{% static 'home/js/home.js' %}"></script>
+{% endblock %}

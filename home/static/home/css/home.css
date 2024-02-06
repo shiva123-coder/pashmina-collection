@@ -74,6 +74,7 @@
        font-size: 2rem;
        background-color: var(--text);
    }
+   /*--paragraph below carousel--*/
    /*-- Cards on homepage, below carousel --*/
    
    .container-second {
@@ -110,6 +111,42 @@
    #modalClose {
        font-size: 2rem;
        padding: 0.75rem;
+   }
+   /*--contact form--*/
+   
+   #contact-section {
+       margin-bottom: 8rem;
+   }
+   
+   .contact-form {
+       text-align: center;
+   }
+   
+   label {
+       font-size: 2rem;
+   }
+   
+   input#id_full_name,
+   input#id_email,
+   textarea#id_message {
+       width: 50%;
+       font-size: 1.25rem;
+       margin-left: 2rem;
+       font-weight: bold;
+   }
+   
+   input#id_email {
+       margin-left: 5rem;
+   }
+   
+   textarea#id_message {
+       resize: none;
+       margin-left: 3rem;
+   }
+   /*--contact form success template--*/
+   
+   .success-container {
+       margin-top: 15rem;
    }
    /*----Media---*/
    /* @media screen and (max-width: 992px) {

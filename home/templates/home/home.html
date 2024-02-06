@@ -101,68 +101,112 @@
         </div>
     </div>
     <!--Text paragaraph below carousel -->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {% for text in texts %}
-                    <h1 class="text-main mt-4 pt-4 text-center font-weight-bold first-text">{{ text.title }}</h1>
-                    <hr class="w-25 mx-auto mb-4">
-                    <h3 class="text-main mt-4 pt-4 text-center second-text">{{ text.heading }}</h3>
-                    <p class="text-main mt-4 pt-4 third-text">{{ text.description }}</p>
-                    <a href="{% url 'all_products' %}" class="btn btn-info mt-4 p-3 ">
-                        <strong class="h3 text-capitalize">{{ text.btn_text }}</strong>
-                    </a>
-                {% endfor %}
+    <div id="intro-section" class="pt-4 pb-4 bg-first">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% for text in texts %}
+                        <h1 class="text-main mt-4 pt-4 text-center font-weight-bold first-text">{{ text.title }}</h1>
+                        <hr class="w-25 mx-auto mb-4">
+                        <h3 class="text-main mt-4 pt-4 text-center second-text">{{ text.heading }}</h3>
+                        <p class="text-main mt-4 pt-4 third-text">{{ text.description }}</p>
+                        <a href="{% url 'all_products' %}" class="btn btn-info mt-4 p-3 ">
+                            <strong class="h3 text-capitalize">{{ text.btn_text }}</strong>
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
     <!--Why choose us section-->
-    <div class="container-fluid container-second">
-        <div class="row justify-content-around row-card-heading">
-            <div class="col">
-                <h1 class=" text-main heading-card-main font-weight-bold first-text">Why Choose Our Products !
-                </h1>
-                <hr class="w-25 mx-auto mb-4">
+    <div id="info-section" class="pt-4 mt-4 pb-4 bg-second">
+        <div class="container-fluid container-second">
+            <div class="row justify-content-around row-card-heading">
+                <div class="col">
+                    <h1 class=" text-main heading-card-main font-weight-bold first-text">Why Choose Our Products !
+                    </h1>
+                    <hr class="w-25 mx-auto mb-4">
+                </div>
+            </div>
+            <div class="row card-row mb-2 pb-3 card-row">
+                {% for card in cards %}
+                    <div class="col-sm-6 col-xl-3 card-col mb-4 mt-4">
+                        <div class="card info-card card-home">
+                            {% if card.image %}
+                                <img src="{{ card.image.url }}" class="card-img-top card-img-top-home" alt="image">
+                            {% else %}
+                                <img class="card-img-top card-img-top-home img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title second-text">{{ card.title }}</h5>
+                                <p class="card-text third-text">{{ card.heading }}</p>
+                                <a class="text-center">
+                                    <button type="button" class="btn btn-light btn-sm btn-card third-text" data-toggle="modal" data-target="#homeCardModal{{ forloop.counter }}">{{ card.btn_card }}</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Modal-->
+                    <div class="modal fade" id="homeCardModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="homeCardModalLabel{{ forloop.counter }}" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <!--<h5 class="modal-title text-main" id="homeCardModalLabel{{ forloop.counter }}">{{ card.heading }}</h5>-->
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="modal-body text-main third-text">{{ card.description }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalClose">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        <div class="row card-row mb-2 pb-3 card-row">
-            {% for card in cards %}
-                <div class="col-sm-6 col-xl-3 card-col mb-4 mt-4">
-                    <div class="card info-card card-home">
-                        {% if card.image %}
-                            <img src="{{ card.image.url }}" class="card-img-top card-img-top-home" alt="image">
-                        {% else %}
-                            <img class="card-img-top card-img-top-home img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title second-text">{{ card.title }}</h5>
-                            <p class="card-text third-text">{{ card.heading }}</p>
-                            <a class="text-center">
-                                <button type="button" class="btn btn-light btn-sm btn-card third-text" data-toggle="modal" data-target="#homeCardModal{{ forloop.counter }}">{{ card.btn_card }}</button>
-                            </a>
+    </div>
+    <!-- Contact Form -->
+    <div id="contact-section" class="pb-4 pt-4 bg-light">
+        <div class="container contact-form-container pb-4">
+            <h2 class="first-text text-center">Contact Us</h2>
+            <hr class="w-50 mx-auto pb-4 mb-4">
+            <div class="row">
+                <div class="col-12 col-md-6 pt-4 pb-4 border border-dark">
+                    <form method="post" class="contact-form third-text">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-info mx-auto text-white fourth-text">Submit</button>
+                    </form>
+                    {% if success_message %}
+                        <div class="alert alert-success mt-3" role="alert">
+                            {{ success_message }}
                         </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6 third-text border border-dark">
+                    <h3 class="mt-3 pt-3 mb-3 text-center font-weight-bold h2">Other ways to connect with us !</h3>
+                    <hr class="w-25 mx-auto pb-3">
+                    <!--call-->
+                    <div class="connect-medium">
+                        <p class="mt-4 text-center"><i class="fi fi-sr-phone-plus"></i></p>
+                        <p class="text-center"><a href="tel:01202097134" class="third-text">Call Us : 00123456789</a></p>
+                    </div>
+                    <!--whatsapp-->
+                    <div class="connect-medium">
+                        <p class="mt-4 text-center"><i class="fab fa-whatsapp"></i></p>
+                        <p class="text-center"><a href="https://api.whatsapp.com/send?phone=+447470381691" class="third-text">Whatsapp : 00123456789</a></p>
+                    </div>
+                    <!--email-->
+                    <div class="connect-medium">
+                        <p class="mt-4 text-center"><i class="fas fa-envelope"></i></p>
+                        <p class="text-center"><a href="mailto:neupanedrivingschool@gmail.com" class="third-text">Email : info@email.co.uk</a></p>
                     </div>
                 </div>
-                <!--Modal-->
-                <div class="modal fade" id="homeCardModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="homeCardModalLabel{{ forloop.counter }}" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <!--<h5 class="modal-title text-main" id="homeCardModalLabel{{ forloop.counter }}">{{ card.heading }}</h5>-->
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="modal-body text-main third-text">{{ card.description }}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalClose">Close</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
     <!--Custom JS file for home app only -->

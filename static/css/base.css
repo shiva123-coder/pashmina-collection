@@ -83,6 +83,18 @@ header {
     font-size: 1.75rem;
 }
 
+.bg-first {
+    background: darkgray
+}
+
+.bg-second {
+    background: lightyellow;
+}
+
+.bg-third {
+    background: lightskyblue;
+}
+
 
 /* .text-dark {
     font-size: 1.25rem;
@@ -138,6 +150,10 @@ header {
 
 footer {
     background: gold;
+}
+
+.social-icon-whatsapp {
+    margin-right: 5rem;
 }
 
 
