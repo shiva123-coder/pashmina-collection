@@ -112,6 +112,13 @@
     - git rm -r --cached .env
     - then git add , commit and push as usual and check on github , ***.env*** file should not be there
 
+## Features/Update to add further :
+  - Order confirmation on email to include product details and images
+  - Invoice create and sent to customer's email once order completed
+  - Social media icon should directly redirect to company's profile on social media when clicked on icons.
+  - Sales tracker mechanism
+  - Product Reviews/Google Reviews
+
 ## Unresolved Issues
 
   - Unable to display sold out button on the product details page if stock quantity is 0 or below ....

@@ -78,6 +78,18 @@ button#decrease-qty_1 {
 }
 
 
+/*--add/edit product--*/
+
+.admin-container {
+    padding-top: 3rem;
+    padding-bottom: 10rem;
+}
+
+label.form-check-label {
+    margin-left: 1rem;
+}
+
+
 /*----Media---*/
 
 @media screen and (min-width: 767px) and (max-width: 992px) {

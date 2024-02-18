@@ -38,14 +38,14 @@
                             <p class="banner-sub-text text-center h3 text-main open-text"><strong class="text-desc text-main text-white">{{ carousel.description }}</strong></p>
                         {% endif %}
                         {% if carousel.extra_info %}
-                            <p class="banner-sub-text text-center h3 text-main open-text">{{ carousel.extra_info }}</p>
+                            <p class="banner-sub-text text-center h3 text-main open-text mb-4">{{ carousel.extra_info }}</p>
                         {% endif %}
                             <!--search field-->
                             <div class="col-6 col-lg-4 mx-auto search-box mt-4 pt-4">
                                 <form method="GET" action="{% url 'all_products' %}">
                                     <div class="input-group input-group-home">
-                                        <input class="form-control border border-white search-field p-4" type="text" name="q" placeholder="Search">
-                                        <div class="input-group-append">
+                                        <input class="form-control border border-white search-field p-4 mt-4" type="text" name="q" placeholder="Search">
+                                        <div class="input-group-append mt-4">
                                             <button class="form-control btn btn-black border border-white search-btn" type="submit">
                                                 <span class="icon">
                                                     <i class="fas fa-search"></i>
@@ -59,8 +59,8 @@
                             <!--Buttond for 1st carousel/If and whenever needed-->
                             {% if carousel.css_class == 'first' %}
                                 {% if carousel.btn_main_first %}
-                                    <a href="{% url 'all_products' %}" class="btn btn-info mt-3 mr-3 btn-main-first">
-                                        <strong class="h4 btn-main-first">{{ carousel.btn_main_first }}</strong>
+                                    <a href="{% url 'all_products' %}" class="btn btn-info mt-3 mr-3 btn-info-first">
+                                        <strong class="h4 btn-info-first">{{ carousel.btn_main_first }}</strong>
                                     </a>
                                 {% endif %}
                                 <span>
@@ -73,8 +73,8 @@
                             <!--Buttond for 2nd carousel/If and whenever needed-->
                             {% if carousel.css_class == 'second' %}
                                 {% if carousel.btn_main_second %}
-                                    <a href="" class="btn btn-info mt-3 mr-3 btn-main-second">
-                                        <strong class="h4 btn-main-second">{{ carousel.btn_main_second }}</strong>
+                                    <a href="" class="btn btn-info mt-3 mr-3 btn-info-second">
+                                        <strong class="h4 btn-info-second">{{ carousel.btn_main_second }}</strong>
                                     </a>
                                 {% endif %}
                                 <span>
@@ -101,15 +101,15 @@
         </div>
     </div>
     <!--Text paragaraph below carousel -->
-    <div id="intro-section" class="pt-4 pb-4 bg-first">
+    <div id="intro-section" class="pt-4 pb-4 ">
         <div class="container">
             <div class="row">
                 <div class="col">
                     {% for text in texts %}
-                        <h1 class="text-main mt-4 pt-4 text-center font-weight-bold first-text">{{ text.title }}</h1>
+                        <h1 class="text-main mt-4 pt-4 text-center font-weight-bold first-text text-sub">{{ text.title }}</h1>
                         <hr class="w-25 mx-auto mb-4">
-                        <h3 class="text-main mt-4 pt-4 text-center second-text">{{ text.heading }}</h3>
-                        <p class="text-main mt-4 pt-4 third-text">{{ text.description }}</p>
+                        <h3 class="text-main mt-4 pt-4 text-center second-text text-sub">{{ text.heading }}</h3>
+                        <p class="text-main mt-4 pt-4 third-text text-sub">{{ text.description }}</p>
                         <a href="{% url 'all_products' %}" class="btn btn-info mt-4 p-3 ">
                             <strong class="h3 text-capitalize">{{ text.btn_text }}</strong>
                         </a>
@@ -119,11 +119,11 @@
         </div>
     </div>
     <!--Why choose us section-->
-    <div id="info-section" class="pt-4 mt-4 pb-4 bg-second">
+    <div id="info-section" class="pt-4 mt-4 pb-4">
         <div class="container-fluid container-second">
             <div class="row justify-content-around row-card-heading">
                 <div class="col">
-                    <h1 class=" text-main heading-card-main font-weight-bold first-text">Why Choose Our Products !
+                    <h1 class=" text-main heading-card-main font-weight-bold first-text text-sub">Why Choose Our Products !
                     </h1>
                     <hr class="w-25 mx-auto mb-4">
                 </div>
@@ -138,10 +138,10 @@
                                 <img class="card-img-top card-img-top-home img-fluid" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
                             {% endif %}
                             <div class="card-body">
-                                <h5 class="card-title second-text">{{ card.title }}</h5>
-                                <p class="card-text third-text">{{ card.heading }}</p>
+                                <h5 class="card-title second-text text-sub">{{ card.title }}</h5>
+                                <p class="card-text third-text text-sub">{{ card.heading }}</p>
                                 <a class="text-center">
-                                    <button type="button" class="btn btn-light btn-sm btn-card third-text" data-toggle="modal" data-target="#homeCardModal{{ forloop.counter }}">{{ card.btn_card }}</button>
+                                    <button type="button" class="btn btn-info btn-sm btn-card third-text" data-toggle="modal" data-target="#homeCardModal{{ forloop.counter }}">{{ card.btn_card }}</button>
                                 </a>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p class="modal-body text-main third-text">{{ card.description }}</p>
+                                <p class="modal-body text-main third-text text-sub">{{ card.description }}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="modalClose">Close</button>
@@ -172,14 +172,14 @@
     <!-- Contact Form -->
     <div id="contact-section" class="pb-4 pt-4 bg-light">
         <div class="container contact-form-container pb-4">
-            <h2 class="first-text text-center">Contact Us</h2>
+            <h2 class="first-text text-center text-sub">Contact Us</h2>
             <hr class="w-50 mx-auto pb-4 mb-4">
             <div class="row">
                 <div class="col-12 col-md-6 pt-4 pb-4 border border-dark">
-                    <form method="post" class="contact-form third-text">
+                    <form method="post" class="contact-form third-text text-sub">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-info mx-auto text-white fourth-text">Submit</button>
+                        <button type="submit" class="btn btn-info mx-auto text-white fourth-text text-sub">Submit</button>
                     </form>
                     {% if success_message %}
                         <div class="alert alert-success mt-3" role="alert">
@@ -188,22 +188,22 @@
                     {% endif %}
                 </div>
                 <div class="col-md-6 third-text border border-dark">
-                    <h3 class="mt-3 pt-3 mb-3 text-center font-weight-bold h2">Other ways to connect with us !</h3>
+                    <h3 class="mt-3 pt-3 mb-3 text-center font-weight-bold h2 second-text text-sub">Other ways to connect with us !</h3>
                     <hr class="w-25 mx-auto pb-3">
                     <!--call-->
                     <div class="connect-medium">
-                        <p class="mt-4 text-center"><i class="fi fi-sr-phone-plus"></i></p>
-                        <p class="text-center"><a href="tel:01202097134" class="third-text">Call Us : 00123456789</a></p>
+                        <p class="mt-4 text-center"><i class="fi fi-sr-phone-plus text-sub"></i></p>
+                        <p class="text-center"><a href="tel:01202097134" class="third-text text-sub">Call Us : 00123456789</a></p>
                     </div>
                     <!--whatsapp-->
                     <div class="connect-medium">
-                        <p class="mt-4 text-center"><i class="fab fa-whatsapp"></i></p>
-                        <p class="text-center"><a href="https://api.whatsapp.com/send?phone=+447470381691" class="third-text">Whatsapp : 00123456789</a></p>
+                        <p class="mt-4 text-center"><i class="fab fa-whatsapp text-sub"></i></p>
+                        <p class="text-center"><a href="https://api.whatsapp.com/send?phone=+447411786691" class="third-text text-sub">Whatsapp : 00123456789</a></p>
                     </div>
                     <!--email-->
                     <div class="connect-medium">
-                        <p class="mt-4 text-center"><i class="fas fa-envelope"></i></p>
-                        <p class="text-center"><a href="mailto:neupanedrivingschool@gmail.com" class="third-text">Email : info@email.co.uk</a></p>
+                        <p class="mt-4 text-center"><i class="fas fa-envelope text-sub"></i></p>
+                        <p class="text-center"><a href="mailto:neupanedrivingschool@gmail.com" class="third-text text-sub">Email : info@email.co.uk</a></p>
                     </div>
                 </div>
             </div>

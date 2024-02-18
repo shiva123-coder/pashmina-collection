@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models.functions import Lower
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import(
     Category, Product, WomanProduct, ManProduct, KidsProduct, Variation)
 from django.http import JsonResponse
+
+from .forms import ProductForm
 
 # View for all products
 def all_products(request):
@@ -229,3 +232,82 @@ def kids_products(request):
 
     }
     return render(request, 'product/kids_product.html', context)
+
+@login_required
+def add_product(request):
+    """
+    add product to the page
+    option only for superuser
+    """
+    if not request.user.is_superuser:
+        messages.warning(request, 'Access denied,\
+             only admin has access to this page')
+        return redirect(reverse('all_products'))
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you!, product added succesfully!')
+            return redirect(reverse('all_products'))
+        else:
+            messages.error(request,
+                           ('Sorry! Something went wrong,\
+                                Please recheck the form and try again.'))
+    else:
+        form = ProductForm()
+
+    template = 'product/add_product.html'
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_product(request, product_id):
+    """edit/update product and its info from the page"""
+    if not request.user.is_superuser:
+        messages.warning(request, 'Access denied,\
+            only admin has access to this')
+        return redirect(reverse('all_products'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'product updated!')
+            return redirect(reverse('all_products'))
+        else:
+            messages.error(request, 'Sorry,\
+            request failed, please re-check the form and try again')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.product_name}')
+
+    template = 'product/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
+        'product_id': product_id,
+        'on_edit_page': True
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_product(request, product_id):
+    """ Delete product from the page """
+    if not request.user.is_superuser:
+        messages.warning(request, 'Access denied,\
+             only admin has access to this')
+        return redirect(reverse('all_products'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'product deleted!')
+    return redirect(reverse('all_products'))

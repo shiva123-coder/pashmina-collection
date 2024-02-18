@@ -85,13 +85,17 @@
         <title>Pashmina Collection{% block extra_title %}{% endblock %}</title>
   </head>
     <body>
-        <div id="scroll-icon"><i class="far fa-arrow-alt-circle-up"></i></div>
         <header class="container-fluid">
             <!--navbar brand-->
             <div id="topnav" class="row bg-wite pt-3 pb-3 d-flex">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
                     <!--Display brand logo only on large/x-lg screen-->
-                    <a class="navbar-brand text-main font-weight-bold mx-auto d-none d-lg-block" href="#">Brand Logo Here</a>
+                    <a class="navbar-brand text-main font-weight-bold mx-auto d-none d-lg-block" href="#">
+                        <div class="brand-logo">
+                            <img class="card-img-top img-fluid main-logo" data-v-b1469874 src="{{ MEDIA_URL }}logo.jpg"
+                            alt="Company's Logo">
+                        </div>
+                    </a>
                     <!--Display Business Name only on small and medium screen-->
                     <a class="navbar-brand text-main first-text font-weight-bold mx-auto d-block d-lg-none" href="#">Business name</a>              
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +116,7 @@
                                 <div class="dropdown-menu dropdown-menu-second border-0" aria-labelledby="user-options">
                                 {% if request.user.is_authenticated %}
                                         {% if request.user.is_superuser %}
-                                            <a href="" class="dropdown-item dropdown-account">Admin</a>
+                                            <a href="{% url 'add_product' %}" class="dropdown-item dropdown-account">Admin</a>
                                         {% endif %}
                                             <a href="{% url 'profile' %}" class="dropdown-item dropdown-account">My Account</a>
                                             <a href="{% url 'account_logout' %}" class="dropdown-item dropdown-account">Logout</a>

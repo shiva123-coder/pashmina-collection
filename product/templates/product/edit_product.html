@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css_products %}
+    <link rel="stylesheet" href="{% static 'product/css/product.css' %}">
+{% endblock %}
+
+
+{% block header_main %}
+<div class="overlay"></div>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container admin-container">
+        <div class="row text-center">
+        <div class="col text-center">
+            <h1 class="product-title mb-4">Welcome to Admin page</h1>
+            <hr class="block-divider block-divider-checkout">
+            <h3 class="product-title-sub">Edit product on the page</h3>
+        </div>
+    </div>
+    <div class="row no-gutter text-center">
+        <div class="col-12 col-md-6 offset-md-3 text-left">
+            <form method="POST" action="{% url 'edit_product' product.id %}" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                        {% if field.name != 'image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                {% endfor %}
+                <div class="text-center btn-add">
+                    <a class="btn btn-warning" href="{% url 'all_products' %}">Cancel</a>
+                    <button class="btn btn-success" type="submit">Update product</button>
+                </div>
+            </form>
+        </div>  
+       
+    </div>
+    </div>
+    <script src="{% static 'product/js/product.js' %}"></script>
+    <script>
+        let csrfToken = "{{ csrf_token }}"
+    </script>
+{% endblock %}

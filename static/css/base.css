@@ -36,14 +36,13 @@ body {
 }
 
 :root {
-    --white: #FFFFFF;
-    --yellow: #f8d90f;
-    --green: #d3dd18;
-    --main: #6c0707;
+    --bg_main: brown;
+    --text_main: #FFFFFF;
+    --second_text: maroon;
 }
 
 header {
-    background-color: var(--yellow);
+    background-color: var(--bg_main);
     z-index: 999;
 }
 
@@ -57,29 +56,33 @@ header {
 /*---------specials----------*/
 
 .text-main {
-    color: var(--main);
+    color: var(--text_main);
     font-size: 1.6rem;
 }
 
+.text-sub {
+    color: var(--second_text);
+}
+
+.bg-main {
+    background: var(--bg_main);
+}
+
 .first-text {
-    color: var(--main);
     font-weight: bold;
     font-size: 2.5rem;
 }
 
 .second-text {
-    color: var(--main);
     font-weight: bold;
     font-size: 2rem;
 }
 
 .third-text {
-    color: var(--main);
     font-size: 2rem;
 }
 
 .fourth-text {
-    color: var(--main);
     font-size: 1.75rem;
 }
 
@@ -94,11 +97,6 @@ header {
 .bg-third {
     background: lightskyblue;
 }
-
-
-/* .text-dark {
-    font-size: 1.25rem;
-} */
 
 .message-container {
     position: fixed;
@@ -128,13 +126,21 @@ header {
     font-size: 2rem;
 }
 
+.navbar-light .navbar-brand {
+    color: var(--text_main);
+}
+
+.navbar-light .navbar-toggler {
+    background: var(--text_main);
+}
+
 .dropdown-item {
-    color: var(--main);
+    color: var(--text_main);
     font-size: 1.5rem;
     font-weight: bold;
     padding: 1rem;
     text-align: center;
-    background: gold;
+    background: var(--bg_main);
 }
 
 
@@ -149,7 +155,7 @@ header {
 /*-- Footer--*/
 
 footer {
-    background: gold;
+    background: var(--bg_main);
 }
 
 .social-icon-whatsapp {
