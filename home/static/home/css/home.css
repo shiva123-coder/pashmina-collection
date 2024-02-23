@@ -30,14 +30,6 @@
        height: 100%;
        padding: 0px;
    }
-   
-   .brand-logo {
-       height: 120px;
-       width: fit-content;
-       margin-bottom: -30px;
-       margin-top: -30px;
-       padding-top: 30px;
-   }
    /*--Homepage - Carousel --*/
    
    .container-carousel {
@@ -180,6 +172,12 @@
        }
        .text-desc {
            letter-spacing: 1rem;
+       }
+   }
+   
+   @media screen and (max-width: 992px) {
+       .input-group-home {
+           width: 50vw;
        }
    }
    
