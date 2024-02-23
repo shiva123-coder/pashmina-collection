@@ -91,7 +91,12 @@
             <div id="topnav" class="row bg-wite pt-lg-2 d-flex">
                 <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                     <!--Display brand logo only on large/x-lg screen-->
-                    <a class="navbar-brand text-main font-weight-bold mx-auto d-none d-lg-block" href="#">Brand Logo Here</a>
+                    <a class="navbar-brand text-main font-weight-bold mx-auto d-none d-lg-block" href="#">
+                        <div class="brand-logo">
+                            <img class="card-img-top img-fluid main-logo" data-v-b1469874 src="{{ MEDIA_URL }}logo.png"
+                            alt="Company's Logo">
+                        </div>
+                    </a>
                     <!--Display Business Name only on small and medium screen-->
                     <a class="navbar-brand first-text font-weight-bold mx-auto d-block d-lg-none" href="#">Business name</a>              
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
