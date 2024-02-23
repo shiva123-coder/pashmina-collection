@@ -33,7 +33,7 @@
                     <img class="carousel-image" src="{{ MEDIA_URL }}no-image.jpg" alt="image">
                     {% endif %}
                     <div class="banner-text {{ carousel.css_class }} ">
-                        <h1 class="text-white text-center text-capitalize display-3 sign" id="{{ carousel.id }}">{{ carousel.title }}</h1>
+                        <h1 class="text-white text-center text-capitalize display-3 sign font-weight-bold" id="{{ carousel.id }}">{{ carousel.title }}</h1>
                         {% if carousel.description %}
                             <p class="banner-sub-text text-center h3 text-main open-text"><strong class="text-desc text-main text-white">{{ carousel.description }}</strong></p>
                         {% endif %}
@@ -59,7 +59,7 @@
                             <!--Buttond for 1st carousel/If and whenever needed-->
                             {% if carousel.css_class == 'first' %}
                                 {% if carousel.btn_main_first %}
-                                    <a href="{% url 'all_products' %}" class="btn btn-info mt-3 mr-3 btn-info-first">
+                                    <a href="{% url 'all_products' %}" class="btn btn-info mr-3 btn-info-first p-3">
                                         <strong class="h4 btn-info-first">{{ carousel.btn_main_first }}</strong>
                                     </a>
                                 {% endif %}

@@ -172,12 +172,16 @@
        margin-top: 15rem;
    }
    /*----Media---*/
-   /* @media screen and (max-width: 992px) {
-       .input-group {
-           width: 40vw;
+   
+   @media screen and (min-width: 992px) {
+       .sign {
+           letter-spacing: 1rem;
+           font-size: 5rem;
+       }
+       .text-desc {
+           letter-spacing: 1rem;
        }
    }
-   */
    
    @media screen and (max-width: 576px) {
        .input-group-home {
