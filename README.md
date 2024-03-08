@@ -19,7 +19,6 @@
    - type touch .gitignore command on terminal  (crete .gitignore file)
     - add below to .gitignore file
       ```
-
         *.sqlite3
         * .pyc
         __pycache__

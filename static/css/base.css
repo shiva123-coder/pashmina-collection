@@ -1,23 +1,21 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    scroll-behavior: smooth;
-}
-
-html {
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    font-size: 62.5%;
-    overflow-x: hidden;
-}
-
-
-/*html font size calculated as below inorder to make 1rem = 10px
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    :root {
+        scroll-behavior: smooth;
+    }
+    
+    html {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        font-size: 62.5%;
+        overflow-x: hidden;
+    }
+    /*html font size calculated as below inorder to make 1rem = 10px
 
     1rem = 16px = 100%
     which means, 16px = 100% then,
@@ -25,197 +23,171 @@ html {
     now, html font size added to 62.5% which means, 
     if we use 1rem then it will now be equivelant to 10px
 */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Dosis', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-:root {
-    --bg_main: brown;
-    --text_main: #FFFFFF;
-    --second_text: maroon;
-    /*about-link*/
-}
-
-header {
-    background-color: var(--bg_main);
-    z-index: 999;
-}
-
-.content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-
-/*---------specials----------*/
-
-.text-main {
-    color: var(--text_main);
-    font-size: 1.6rem;
-}
-
-.text-sub {
-    color: var(--second_text);
-}
-
-.bg-main {
-    background: var(--bg_main);
-}
-
-.first-text {
-    font-weight: bold;
-    font-size: 2.5rem;
-}
-
-.second-text {
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.third-text {
-    font-size: 2rem;
-}
-
-.fourth-text {
-    font-size: 1.75rem;
-}
-
-.bg-first {
-    background: darkgray
-}
-
-.bg-second {
-    background: lightyellow;
-}
-
-.bg-third {
-    background: lightskyblue;
-}
-
-.message-container {
-    position: fixed;
-    top: 15%;
-    right: 20px;
-    z-index: 9999999999;
-}
-
-#scroll-icon {
-    position: fixed;
-    width: 35px;
-    bottom: 55px;
-    right: 0;
-    color: #000;
-    font-size: 1.75em;
-    overflow: hidden;
-    cursor: pointer;
-    text-decoration: none;
-    display: none;
-    z-index: 999999;
-}
-
-
-/*--Navbar---*/
-
-.brand-logo {
-    height: 12rem;
-    width: fit-content;
-    margin-bottom: -8rem;
-    margin-top: -3rem;
-    padding-top: 3rem;
-}
-
-.brand-text {
-    font-size: 2.5rem;
-}
-
-.brand-logo-second {
-    margin-bottom: -5rem;
-    margin-top: -5rem;
-}
-
-.nav-item {
-    font-size: 2rem;
-}
-
-.navbar-light .navbar-brand {
-    color: var(--text_main);
-}
-
-.navbar-light .navbar-toggler {
-    background: var(--text_main);
-}
-
-.dropdown-item {
-    color: var(--text_main);
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 1rem;
-    text-align: center;
-    background: var(--bg_main);
-}
-
-
-/*--close button on django message container--*/
-
-.close {
-    font-size: 2rem;
-    color: red;
-}
-
-
-/*-- Footer--*/
-
-footer {
-    background: var(--bg_main);
-}
-
-.social-icon-whatsapp {
-    margin-right: 5rem;
-}
-
-
-/*----Media---*/
-
-@media screen and (max-width: 992px) {
-    .brand-logo {
-        margin-bottom: -0.25rem;
-        margin-top: -3rem;
+    
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Dosis', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
-    .brand-logo-second {
-        margin-bottom: -1.25rem;
+    
+    :root {
+        --bg_main: brown;
+        --text_main: #FFFFFF;
+        --second_text: maroon;
+        /*about-link*/
     }
-    .navbar-toggler {
-        order: -1;
-        /* Moves the toggler to the beginning of the flex container */
-    }
-    .main-nav {
-        margin-top: -4rem;
-    }
+    
     header {
+        background-color: var(--bg_main);
+        z-index: 999;
+    }
+    
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    /*---------specials----------*/
+    
+    .text-main {
+        color: var(--text_main);
+        font-size: 1.6rem;
+    }
+    
+    .text-sub {
+        color: var(--second_text);
+    }
+    
+    .bg-main {
+        background: var(--bg_main);
+    }
+    
+    .first-text {
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+    
+    .second-text {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    
+    .third-text {
+        font-size: 2rem;
+    }
+    
+    .fourth-text {
+        font-size: 1.75rem;
+    }
+    
+    .bg-first {
+        background: darkgray
+    }
+    
+    .bg-second {
+        background: lightyellow;
+    }
+    
+    .bg-third {
+        background: lightskyblue;
+    }
+    
+    .message-container {
         position: fixed;
-        top: 0;
+        top: 15%;
+        right: 20px;
+        z-index: 9999999999;
     }
-    .content {
-        margin-top: 12rem;
+    
+    #scroll-icon {
+        position: fixed;
+        width: 35px;
+        bottom: 55px;
+        right: 0;
+        color: #000;
+        font-size: 1.75em;
+        overflow: hidden;
+        cursor: pointer;
+        text-decoration: none;
+        display: none;
+        z-index: 999999;
     }
-}
-
-@media screen and (min-width: 768px) {
-    .content {
-        margin-top: 8rem;
+    /*--Navbar---*/
+    
+    .brand-logo {
+        height: 12rem;
+        width: fit-content;
+        margin-bottom: -8rem;
+        margin-top: -3rem;
+        padding-top: 3rem;
     }
-}
-
-
-/* @media screen and (min-width: 768px) and (max-width: 992px) {
-    .content {
-        margin-top: 8rem;
+    
+    .brand-text {
+        font-size: 2.5rem;
     }
+    
+    .brand-logo-second {
+        margin-bottom: -5rem;
+        margin-top: -5rem;
+    }
+    
+    .nav-item {
+        font-size: 2rem;
+    }
+    
+    .navbar-light .navbar-brand {
+        color: var(--text_main);
+    }
+    
+    .navbar-light .navbar-toggler {
+        background: var(--text_main);
+    }
+    
+    .dropdown-item {
+        color: var(--text_main);
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 1rem;
+        text-align: center;
+        background: var(--bg_main);
+    }
+    /* button.navbar-toggler.ml-auto {
+    margin-top: -3rem;
 } */
+    /*--close button on django message container--*/
+    
+    .close {
+        font-size: 2rem;
+        color: red;
+    }
+    /*-- Footer--*/
+    
+    footer {
+        background: var(--bg_main);
+    }
+    
+    .social-icon-whatsapp {
+        margin-right: 5rem;
+    }
+    /*----Media---*/
+    
+    @media screen and (max-width: 992px) {
+        header {
+            position: fixed;
+            top: 0;
+        }
+        .content {
+            margin-top: 12rem;
+        }
+        img.card-img-top.img-fluid.main-logo {
+            padding-bottom: 2rem;
+        }
+        @media screen and (min-width: 768px) {
+            .content {
+                margin-top: 8rem;
+            }
+        }
+    }

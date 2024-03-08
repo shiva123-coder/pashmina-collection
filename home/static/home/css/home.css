@@ -179,9 +179,6 @@
        .input-group-home {
            width: 50vw;
        }
-       img.main-logo {
-           height: 50px;
-       }
    }
    
    @media screen and (max-width: 576px) {
