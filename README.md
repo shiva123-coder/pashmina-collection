@@ -118,6 +118,14 @@
   - Sales tracker mechanism
   - Product Reviews/Google Reviews
 
+
+## Run local server on second device st the same time within same network during development:
+  - Open command prompt on PC/Laptop and type ipconfig to obtain IP address of the PC
+  - IP address should now display (example:  192.168.0.15)
+  - Now on VScode terminal, type python3 manage.py runserver <IP address>:Port number (python3 manage.py runserver 192.168.0.15:8000)
+  - Now 192.168.0.15:8000 can be run on any other device within same network to run the server during development
+  
+
 ## Unresolved Issues
 
   - Unable to display sold out button on the product details page if stock quantity is 0 or below ....

@@ -4,7 +4,7 @@
         padding: 0;
     }
     
-    :root {
+     :root {
         scroll-behavior: smooth;
     }
     
@@ -33,7 +33,7 @@
         flex-direction: column;
     }
     
-    :root {
+     :root {
         --bg_main: brown;
         --text_main: #FFFFFF;
         --second_text: maroon;
@@ -127,15 +127,21 @@
     
     .brand-text {
         font-size: 2.5rem;
+        vertical-align: top;
+        margin-top: 1.5rem;
     }
     
-    .brand-logo-second {
-        margin-bottom: -5rem;
-        margin-top: -5rem;
+    img.card-img-top.img-fluid {
+        margin-top: -1rem;
+        margin-bottom: 2rem;
     }
     
     .nav-item {
         font-size: 2rem;
+    }
+    
+    .nav-item:hover {
+        border: none;
     }
     
     .navbar-light .navbar-brand {
@@ -154,9 +160,6 @@
         text-align: center;
         background: var(--bg_main);
     }
-    /* button.navbar-toggler.ml-auto {
-    margin-top: -3rem;
-} */
     /*--close button on django message container--*/
     
     .close {
@@ -179,11 +182,15 @@
             position: fixed;
             top: 0;
         }
+        .navbar-nav {
+            padding-bottom: 100vh;
+            padding-top: 3rem;
+        }
         .content {
             margin-top: 12rem;
         }
         img.card-img-top.img-fluid.main-logo {
-            padding-bottom: 2rem;
+            width: auto;
         }
         @media screen and (min-width: 768px) {
             .content {
