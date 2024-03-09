@@ -134,6 +134,7 @@
     img.card-img-top.img-fluid {
         margin-top: -1rem;
         margin-bottom: 2rem;
+        height: 100%;
     }
     
     .nav-item {
@@ -191,6 +192,7 @@
         }
         img.card-img-top.img-fluid.main-logo {
             width: auto;
+            height: 100%;
         }
         @media screen and (min-width: 768px) {
             .content {
