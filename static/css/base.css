@@ -197,7 +197,7 @@
         .nav-link {
             position: relative;
         }
-        i.fas.fa-caret-down.text-main {
+        i.fas.fa-chevron-down.text-main {
             position: absolute;
             top: 50%;
             right: 0;
