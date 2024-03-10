@@ -7,6 +7,7 @@
                     <div>
                         <!--<i class="fas fa-child-dress mr-3 d-inline d-lg-none text-main"></i><i class="fi fi-rs-woman-head"></i>-->
                         <span class="nav-item mr-2 text-main">Woman</span><span><i class="fas fa-caret-down text-main"></i></span>
+                        <hr class="hr-white mb-4 d-sm-block d-lg-none border border-white">
                     </div> 
                 </div>
             </a>
@@ -23,6 +24,7 @@
                     <div>
                         <!--<i class="fas fa-user mr-3 d-inline d-lg-none text-main"></i>-->
                         <span class="nav-item mr-2 text-main">Man</span><span><i class="fas fa-caret-down text-main"></i></span>
+                        <hr class="hr-white mb-4 d-sm-block d-lg-none border border-white">
                     </div> 
                 </div>
             </a>
@@ -39,6 +41,7 @@
                     <div>
                         <!--<i class="fas fa-utensils mr-3 d-inline d-lg-none text-main"></i>-->
                         <span class="nav-item mr-2 text-main">Unisex</span><span><i class="fas fa-caret-down text-main"></i></span>
+                        <hr class="hr-white mb-4 d-sm-block d-lg-none border border-white">
                     </div> 
                 </div>
             </a>
@@ -48,34 +51,13 @@
                 <a href="{% url 'unisex_products' %}?category=scarves" class="dropdown-item item-list">Scarves</a>
             </div>
         </li>
-        <!--home-->
-        <li class="nav-item nav-item-home">
-            <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="{% url 'home' %}" id="home-link" aria-haspopup="true" aria-expanded="false">
-                <div class="nav-link text-main font-weight-bold">
-                    <div>
-                        <i class="fas fa-home mr-3 d-inline d-lg-none text-main"></i>
-                        <span class="nav-item text-main">Home</span>
-                    </div>
-                </div>
-            </a>
-        </li>
-        <!--about(d-none class added to hide )-->
-        <li class="nav-item d-none">
-            <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="{% url 'man_products' %}" id="about-link" aria-haspopup="true" aria-expanded="false">
-                <div class="nav-link text-main font-weight-bold">
-                    <div>
-                        <i class="fas fa-info-circle mr-3 d-inline d-lg-none text-main"></i>
-                        <span class="nav-item text-main">About Us</span>
-                    </div>
-                </div>
-            </a>
-        </li>
         <!--account-->
         <li class="nav-item dropdown d-md-block d-lg-none">
             <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="#" id="user-options2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="nav-link text-main font-weight-bold">
                     <div>
                         <i class="fas fa-user mr-3 text-main"></i><span class="nav-item mr-3 text-main">Account</span><span><i class="fas fa-caret-down text-main"></i></span>
+                        <hr class="hr-white mb-4 d-sm-block d-lg-none border border-white">
                     </div>
                 </div>
             </a>
@@ -91,6 +73,30 @@
                     <a href="{% url 'account_login' %}" class="dropdown-item dropdown-account">Login</a>
                 {% endif %}
             </div>
+        </li>
+        <!--home-->
+        <li class="nav-item nav-item-home">
+            <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="{% url 'home' %}" id="home-link" aria-haspopup="true" aria-expanded="false">
+                <div class="nav-link text-main font-weight-bold">
+                    <div>
+                        <i class="fas fa-home mr-3 d-inline d-lg-none text-main"></i>
+                        <span class="nav-item text-main">Home</span>
+                        <hr class="hr-white mb-4 d-sm-block d-lg-none border border-white">
+                    </div>
+                </div>
+            </a>
+        </li>
+        <!--about(d-none class added to hide )-->
+        <li class="nav-item d-none">
+            <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="{% url 'man_products' %}" id="about-link" aria-haspopup="true" aria-expanded="false">
+                <div class="nav-link text-main font-weight-bold">
+                    <div>
+                        <i class="fas fa-info-circle mr-3 d-inline d-lg-none text-main"></i>
+                        <span class="nav-item text-main">About Us</span>
+                        <hr class="hr-white mb-4 d-sm-block d-lg-none border border-white">
+                    </div>
+                </div>
+            </a>
         </li>
          <!--basket-->
         <li class="nav-item d-md-block d-lg-none">

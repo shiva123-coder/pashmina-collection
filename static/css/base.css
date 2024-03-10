@@ -194,6 +194,15 @@
             padding-bottom: 100vh;
             padding-top: 3rem;
         }
+        .nav-link {
+            position: relative;
+        }
+        i.fas.fa-caret-down.text-main {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
         .content {
             margin-top: 12rem;
         }
