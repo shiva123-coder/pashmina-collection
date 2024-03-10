@@ -127,34 +127,33 @@
 {% endblock %}
 {% block postloadjs %}
     {{ block.super }}
+        <script type="text/javascript">
+            // update and remove option in the basket after quantity modification
+            // update option
+            $('.update-qty').click(function(e) {
+                    var form = $(this).prev('.update-form');
+                    form.submit();
+                })
+            // remove option
+            $('.remove-qty').click(function(e) {
+                var csrfToken = "{{ csrf_token }}";
+                var productId = $(this).attr('id').split('remove_')[1];
+                var size = $(this).data('size'); // Retrieve size from data attribute
+                var color = $(this).data('color'); // Retrieve color from data attribute
 
-    <script type="text/javascript">
-        // update and remove option in the basket after quantity modification
-        // update option
-        $('.update-qty').click(function(e) {
-                var form = $(this).prev('.update-form');
-                form.submit();
-            })
-        // remove option
-        $('.remove-qty').click(function(e) {
-            var csrfToken = "{{ csrf_token }}";
-            var productId = $(this).attr('id').split('remove_')[1];
-            var size = $(this).data('size'); // Retrieve size from data attribute
-            var color = $(this).data('color'); // Retrieve color from data attribute
+                var url = `/basket/remove/${productId}/`;
+                var data = {
+                    'csrfmiddlewaretoken': csrfToken,
+                    'size': size,  // Include size in the data
+                    'color': color  // Include color in the data
+                };
 
-            var url = `/basket/remove/${productId}/`;
-            var data = {
-                'csrfmiddlewaretoken': csrfToken,
-                'size': size,  // Include size in the data
-                'color': color  // Include color in the data
-            };
-
-            $.post(url, data)
-                .done(function() {
-                    location.reload();
-                });
-        });
-    </script>
+                $.post(url, data)
+                    .done(function() {
+                        location.reload();
+                    });
+            });
+        </script>
     <!--Custom JS file for basket app only -->
     <script src="{% static 'basket/js/basket.js' %}"></script>
 {% endblock %}

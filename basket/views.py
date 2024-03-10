@@ -12,6 +12,11 @@ def view_basket(request):
     return render(request, 'basket/basket.html')
 
 
+def reset_inactivity_timer(request):
+    """Reset the inactivity timer"""
+    request.session['basket_timer_reset'] = True
+    
+
 def add_to_basket(request, product_id):
     """Add product details, including color, size, and quantity, to the basket"""
     product = get_object_or_404(Product, pk=product_id)
@@ -47,9 +52,15 @@ def add_to_basket(request, product_id):
 
         request.session['basket'] = basket
         messages.success(request, f"{product.product_name} has been added to your basket.")
+        
+        # Call the resetInactivityTimer function after adding the item to the basket
+        reset_inactivity_timer(request)
+        
     else:
         messages.error(request, f"Sorry, we only have only {variation.stock_quantity} stock for {product.product_name} with the selected size and color, please ammend the quantity or choose another variation")
         return redirect(reverse('product_details', args=[product_id]))
+    
+    request.session['basket_item_added'] = True
     return redirect(reverse('all_products'))
 
 
@@ -82,12 +93,17 @@ def update_basket(request, product_id):
                 variation.save()
 
             messages.success(request, f"{product.product_name} quantity has been updated.")
+            
+            # Call the resetInactivityTimer function after updating the basket
+            reset_inactivity_timer(request)
+            
         else:
             messages.error(request, f"Sorry, we only have only {variation.stock_quantity} stock for {product.product_name} with the selected size and color, please ammend the quantity or choose another variation")
             return redirect('view_basket')
     else:
         messages.error(request, f"Error updating quantity for {product.product_name} in the basket.")
-
+        
+    request.session['basket_updated'] = True
     return redirect('view_basket')
 
 
@@ -116,8 +132,29 @@ def remove_basket(request, product_id):
         del basket[variation_key]
         request.session['basket'] = basket
         messages.success(request, f"{product.product_name} has been removed from the basket.")
+        
+        # Call the resetInactivityTimer function after removing item the basket
+        reset_inactivity_timer(request)
     else:
         messages.error(request, f"Error removing {product.product_name} from the basket.")
 
     return redirect(reverse('view_basket'))
+
+
+## View to remove entire basket when user is inactive for certain period of time
+## refer to bottom of the base.html page to understand javascript logic to deal with time and basket removal
+def remove_whole_basket(request):
+    if 'basket' in request.session:
+        basket = request.session.pop('basket', {})  # Remove basket from session and get its contents
+        for item_key, item_data in basket.items():
+            product_id, size, color = item_key.split('_')
+            quantity = item_data['quantity']
+            
+            # Increase the stock quantity for the item back to the inventory
+            variation = Variation.objects.get(product_id=product_id, size=size, color=color)
+            variation.stock_quantity += quantity
+            variation.save()
+        
+        messages.info(request, "Your basket is emptied due to inactivity. Please re-add your favorites")
+    return redirect('view_basket')
 

@@ -39,7 +39,7 @@
                         </div>
                         <div class="col-3 text-left">
                             <p class="my-0 fourth-text">Qty: {{ product.quantity }}</p>
-                            <p class="total-price fourth-text">£{{ product.product.price | calculate_total:product.quantity }}</p>   
+                            <p class="total-price fourth-text">£{{ product.product.selling_price | calculate_total:product.quantity }}</p>   
                         </div>
                         
                     </div>

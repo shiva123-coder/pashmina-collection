@@ -82,7 +82,7 @@
         {% block extra_js_profiles %}
         {% endblock %}
 
-        <title>Pashmina Collection{% block extra_title %}{% endblock %}</title>
+        <title>Pashmina Paragon - Exclusive Handmade Cashmere from Nepal{% block extra_title %}{% endblock %}</title>
         <link rel="icon" href="{{ MEDIA_URL }}logo.png" type="image/x-icon">
   </head>
     <body>
@@ -197,5 +197,32 @@
             </script>
         {% endblock %}
         <script src="{% static 'js/main.js' %}"></script>
+
+        <!--JavaScript to empty the basket automatically if user is not active for more than 15 minutes-->
+        <script type="text/javascript">
+            var inactivityTimer;
+
+            // Function to reset the inactivity timer
+            function resetInactivityTimer() {
+                // Clear any previous timer to avoid multiple timers running concurrently
+                clearTimeout(inactivityTimer);
+                
+                // Set a new timer to execute after 10 seconds of inactivity
+                inactivityTimer = setTimeout(function() {
+                    // Redirect the user to remove_whole_basket URL after 10 seconds of inactivity
+                    window.location.href = "{% url 'remove_whole_basket' %}";
+                }, 10000); // 10 seconds
+            }
+
+            // Execute the resetInactivityTimer function when the document is ready
+            $(document).ready(function() {
+                resetInactivityTimer();
+            });
+
+            // Track user activity on mousemove or keydown events
+            $(document).on('mousemove keydown', function() {
+                resetInactivityTimer(); // Reset the inactivity timer on mousemove or keydown events
+            });
+        </script>
     </body>
 </html>
