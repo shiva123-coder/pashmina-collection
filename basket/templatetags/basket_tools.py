@@ -5,5 +5,5 @@ register = template.Library()
 
 
 @register.filter(name="calculate_total")
-def calculate_total(price, quantity):
-    return price * quantity
+def calculate_total(selling_price, quantity):
+    return selling_price * quantity

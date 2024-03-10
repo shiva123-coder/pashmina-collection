@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from .models import(
-    Category, Product, WomanProduct, ManProduct, KidsProduct, Variation)
+    Category, Product, WomanProduct, ManProduct, UnisexProduct, Variation)
 from django.http import JsonResponse
 
 from .forms import ProductForm
@@ -172,8 +172,8 @@ def man_products(request):
     return render(request, 'product/man_product.html', context)
 
 # View for Kids products
-def kids_products(request):
-    kidsproducts = KidsProduct.objects.filter(is_available=True).order_by('product_name')
+def unisex_products(request):
+    unisexproducts = UnisexProduct.objects.filter(is_available=True).order_by('product_name')
     query = None
     categories = None
     sort = None
@@ -186,28 +186,28 @@ def kids_products(request):
             sort = sortkey
 
             if sortkey == "product_name":
-                kidsproducts = kidsproducts.annotate(sortkey=Lower("product_name"))
+                unisexproducts = unisexproducts.annotate(sortkey=Lower("product_name"))
 
             if "direction" in request.GET:
                 direction = request.GET["direction"]
                 if direction == 'desc':
                     sortkey = f"-{'price'}"
                     if sortkey == "None":
-                        kidsproducts = kidsproducts
+                        unisexproducts = unisexproducts
                     else:
-                        kidsproducts = kidsproducts.order_by(sortkey)
+                        unisexproducts = unisexproducts.order_by(sortkey)
                 else:
                     direction == 'asc'
                     sortkey = f"{'price'}"
                     if sortkey == "None":
-                        kidsproducts = kidsproducts
+                        unisexproducts = unisexproducts
                     else:
-                        kidsproducts = kidsproducts.order_by(sortkey)
+                        unisexproducts = unisexproducts.order_by(sortkey)
 
     if request.GET:
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            kidsproducts = kidsproducts.filter(category__category_name__in=categories)
+            unisexproducts = unisexproducts.filter(category__category_name__in=categories)
             categories = Category.objects.filter(category_name__in=categories)
 
         if request.GET:
@@ -215,23 +215,23 @@ def kids_products(request):
                 query = request.GET['q1']
                 if not query:
                     messages.error(request, "No search criteria entered!")
-                    return redirect(reverse('kidsproducts'))
+                    return redirect(reverse('unisexproducts'))
                 queries = Q(product_name__icontains=query) | Q(
                     description__icontains=query)
-                kidsproducts = kidsproducts.filter(queries)
+                unisexproducts = unisexproducts.filter(queries)
                  
                     
     existing_sorting = f'{sort}_{direction}'
 
     context = {
-        'kidsproducts': kidsproducts,
+        'unisexproducts': unisexproducts,
         'search_term': query,
         'existing_categories': categories,
         'existing_sorting': existing_sorting,
         'image': image,
 
     }
-    return render(request, 'product/kids_product.html', context)
+    return render(request, 'product/unisex_product.html', context)
 
 @login_required
 def add_product(request):

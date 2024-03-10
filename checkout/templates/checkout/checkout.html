@@ -97,7 +97,7 @@
                                 {% endif %}
                             </div>
                             <div class="col-3">
-                                <p class="small text-muted fourth-text">£{{ product.product.price | calculate_total:product.quantity }}</p>
+                                <p class="small text-muted fourth-text">£{{ product.product.selling_price | calculate_total:product.quantity }}</p>
                             </div>
                         </div>
                     {% endfor %}

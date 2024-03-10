@@ -30,7 +30,7 @@
                         </h2>
                     {% else %}
                         <h2 class="mans mans-heading font-weight-bold">
-                            <a class="badge badge-white text-black">mans
+                            <a class="badge badge-white text-black">Mans
                                 <hr class="block-divider">
                             </a>
                         </h2>
@@ -40,12 +40,12 @@
             <!--search box, only visible on small and medium devices-->
             <div class="row">
                 <div class="col">
-                    <div class="col-6 col-lg-4 mx-auto py-1 py-lg-0 d-block d-lg-none pb-2 pt-0">
+                    <div class="col-6 col-lg-4 mx-auto py-1 py-lg-0 pb-2 pt-0">
                         <form method="GET" action="{% url 'man_products' %}">
                             <div class="input-group w-100">
-                                <input class="form-control border borderwhite search-field" type="text" name="q1" placeholder="Search">
+                                <input class="form-control border border-secondary search-field" type="text" name="q1" placeholder="Search">
                                 <div class="input-group-append">
-                                    <button class="form-control btn btn-black border border-white search-btn" type="submit">
+                                    <button class="form-control btn btn-black border border-secondary search-btn" type="submit">
                                         <span class="icon">
                                             <i class="fas fa-search"></i>
                                         </span>
@@ -60,13 +60,13 @@
                 <div class="row">
                     <!--sort option-->
                     <div class="col-10 offset-1 d-flex justify-content-center justify-content-md-center mb-4 pb-4 mt-3">
-                        <div class="sort-option w-40 ">
+                        <div class="sort-option w-45 border">
                             <select id="sort-selection"
-                                class="custom-select -{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                                class="custom-select -{% if current_sorting != 'None_None' %}info{% else %}black{% endif %} border border-secondary">
                                 <option value="reset" {% if existing_sorting == 'None_None' %}selected{% endif %}>Sort
                                     by...</option>
                                 <option value="price_asc" class="sortmans" {% if existing_sorting == 'price_asc' %}selected{% endif %}>
-                                    Price (low to high)</option>
+                                    Price (low to high) </option>
                                 <option value="price_desc" {% if existing_sorting == 'price_desc' %}selected{% endif %}>
                                     Price (high to low)</option>
                             </select>
@@ -113,12 +113,15 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <p class="display-5 text-left text-main font-weight-bold text-capitalize">
+                                                <p class="fourth-text text-left text-dark font-weight-bold text-capitalize">
                                                     {{ man.product_name }}
                                                 </p>
                                             </div>
                                             <div class="col">
-                                                <p class="diaplay-3 text-right text-main font-weight-bold">£{{ man.price }}</p>
+                                                <p class="fourth-text text-right text-dark font-weight-bold">£{{ man.selling_price }}</p>
+                                                {% if man.old_price %}
+                                                <p class="fourth-text text-right text-red font-weight-bold"><del class="custom-strike text-danger">Was £{{man.old_price}}</del></p>
+                                                {% endif %}
                                             </div>
                                         </div>
 

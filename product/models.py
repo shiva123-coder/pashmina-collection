@@ -23,7 +23,7 @@ class Product(models.Model):
     PRODUCT_FOR_CHOICES = (
         ('Men', 'Men'),
         ('Woman', 'Woman'),
-        ('Kids', 'Kids'),
+        ('unisex', 'unisex'),
         ('Animals', 'Animals'),
         ('Accessories', 'Accessories'),
         ('Others', 'Others'),
@@ -34,7 +34,8 @@ class Product(models.Model):
         choices= PRODUCT_FOR_CHOICES, default='', max_length=50,  null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True)
     description = models.TextField(max_length=800, blank=True)
-    price = models.IntegerField()
+    selling_price = models.IntegerField()
+    old_price = models.IntegerField(default='0')
     is_available = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -96,6 +97,6 @@ class WomanProduct(Product):
 class ManProduct(Product):
   pass
     
-class KidsProduct(Product):
+class UnisexProduct(Product):
    pass
     

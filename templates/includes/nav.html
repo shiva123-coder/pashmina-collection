@@ -12,11 +12,8 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="menu-link">
                 <a href="{% url 'woman_products' %}?category=sweater"class="dropdown-item item-list">Sweater</a>
-                <a href="{% url 'woman_products' %}?category=cap" class="dropdown-item item-list">Cap</a>
+                <a href="{% url 'woman_products' %}?category=hat" class="dropdown-item item-list">Hat</a>
                 <a href="{% url 'woman_products' %}?category=scarve" class="dropdown-item item-list">Scarve</a>
-                <a href="{% url 'woman_products' %}?category=coat" class="dropdown-item item-list">Coat</a>
-                <a href="{% url 'woman_products' %}?category=new-arrival" class="dropdown-item item-list">New Arrival!</a>
-                <a href="{% url 'woman_products' %}" class="dropdown-item item-list">All products !</a>
             </div>
         </li>
         <!--Man-->
@@ -30,67 +27,25 @@
                 </div>
             </a>
              <div class="dropdown-menu border-0" aria-labelledby="menu-link">
-                <a href="{% url 'man_products' %}?category=t-shirt" class="dropdown-item item-list">T-shirt</a>
-                <a href="{% url 'man_products' %}?category=trouser" class="dropdown-item item-list">Trouser</a>
-                <a href="{% url 'man_products' %}?category=jumper" class="dropdown-item item-list">Jumper</a>
-                <a href="{% url 'man_products' %}?category=coat" class="dropdown-item item-list">Coat</a>
-                <a href="{% url 'man_products' %}?category=new-arrival" class="dropdown-item item-list">New Arrivals !</a>
-                <a href="{% url 'man_products' %}" class="dropdown-item item-list">All products !</a>
+                <a href="{% url 'man_products' %}?category=sweater" class="dropdown-item item-list">Sweater</a>
+                <a href="{% url 'man_products' %}?category=hat" class="dropdown-item item-list">Hat</a>
+                <a href="{% url 'man_products' %}?category=scarves" class="dropdown-item item-list">Scarves</a>
             </div>
         </li>
-        <!--Kids-->
+        <!--Unisex-->
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="" id="menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="nav-link text-main font-weight-bold">
                     <div>
                         <!--<i class="fas fa-utensils mr-3 d-inline d-lg-none text-main"></i>-->
-                        <span class="nav-item mr-2 text-main">Kids</span><span><i class="fas fa-caret-down text-main"></i></span>
+                        <span class="nav-item mr-2 text-main">Unisex</span><span><i class="fas fa-caret-down text-main"></i></span>
                     </div> 
                 </div>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="menu-link">
-                <a href="{% url 'kids_products' %}?category=sweater" class="dropdown-item item-list">Sweater</a>
-                <a href="{% url 'kids_products' %}?category=cap" class="dropdown-item item-list">Caps</a>
-                <a href="{% url 'kids_products' %}?category=scarve" class="dropdown-item item-list">Scarves</a>
-                <a href="{% url 'kids_products' %}?category=coat" class="dropdown-item item-list">Coats</a>
-                <a href="{% url 'kids_products' %}?category=new-arrival" class="dropdown-item item-list">New Arrivals !</a>
-                <a href="{% url 'kids_products' %}" class="dropdown-item item-list">All products !</a>
-            </div>
-        </li>
-        <!--Beauty(d-none class added to hide )-->
-        <li class="nav-item dropdown d-none">
-            <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="" id="menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="nav-link text-main font-weight-bold">
-                    <div>
-                        <i class="fas fa-utensils mr-3 d-inline d-lg-none text-main"></i>
-                        <span class="nav-item mr-2 text-main">Beauty</span><span><i class="fas fa-caret-down text-main"></i></span>
-                    </div> 
-                </div>
-            </a>
-             <div class="dropdown-menu border-0" aria-labelledby="menu-link">
-                <a href="" class="dropdown-item item-list">Sweater</a>
-                <a href="" class="dropdown-item item-list">Caps</a>
-                <a href="" class="dropdown-item item-list">Scarves</a>
-                <a href="" class="dropdown-item item-list">Coats</a>
-                <a href="" class="dropdown-item item-list">New Arrivals !</a>
-            </div>
-        </li>
-        <!--Animals(d-none class added to hide )-->
-        <li class="nav-item dropdown d-none">
-            <a class="logo-font font-weight-bold nav-link text-main font-weight-bold mr-5" href="" id="menu-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="nav-link text-main font-weight-bold">
-                    <div>
-                        <i class="fas fa-utensils mr-3 d-inline d-lg-none text-main"></i>
-                        <span class="nav-item mr-2 text-main">Animals</span><span><i class="fas fa-caret-down text-main"></i></span>
-                    </div> 
-                </div>
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="menu-link">
-                <a href="" class="dropdown-item item-list">Sweater</a>
-                <a href="" class="dropdown-item item-list">Caps</a>
-                <a href="" class="dropdown-item item-list">Scarves</a>
-                <a href="" class="dropdown-item item-list">Coats</a>
-                <a href="" class="dropdown-item item-list">New Arrivals !</a>
+                <a href="{% url 'unisex_products' %}?category=sweater" class="dropdown-item item-list">Sweater</a>
+                <a href="{% url 'unisex_products' %}?category=hat" class="dropdown-item item-list">Hat</a>
+                <a href="{% url 'unisex_products' %}?category=scarves" class="dropdown-item item-list">Scarves</a>
             </div>
         </li>
         <!--home-->

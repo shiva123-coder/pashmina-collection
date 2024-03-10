@@ -35,7 +35,7 @@ def add_to_basket(request, product_id):
             basket[variation_key] = {
                 'product_id': product_id,
                 'product_name': product.product_name,
-                'price': product.price,
+                'selling_price': product.selling_price,
                 'selected_size': selected_size,
                 'selected_color': selected_color,
                 'quantity': quantity,

@@ -38,7 +38,7 @@
             <div class="col-12 col-md-6">
                 <div class="product-info mb-4 mt-5">
                     <p class="display-6 pt-3 mt-3"></p>
-                    <p class="display-6 mt-3 font-weight-bold product-sub first-text"><strong class="first-text"></strong>£ {{ product.price }}</p>
+                    <p class="display-6 mt-3 font-weight-bold product-sub first-text"><strong class="first-text"></strong>£ {{ product.selling_price }}</p>
                     <p class="display-6 mb-0 font-weight-bold product-sub second-text">{{ product.heading }}</p>
                     <p class="display-6 product-sub third-text">{{ product.description }}</p>
 
@@ -92,9 +92,9 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <a href="{% url 'home' %}" class="btn btn-outline-dark mt-5">
+                                <a href="{% url 'home' %}" class="btn btn-secondary btn-outline-dark mt-5">
                                     <span>
-                                        <i class="fas fa-arrow-circle-left btn-order-more"></i>
+                                        <i class="fas fa-arrow-circle-left btn-order-more text-main mr-2"></i>
                                     </span>
                                     <span class="text-uppercase text-main btn-order-more">Order more</span>
                                 </a>
@@ -102,7 +102,7 @@
                                 {% if variation.stock_quantity <= 0 %}
                                     <h1 class="text-uppercase text-main mt-4 pt-4 font-weight-bold">Sold Out</h1>
                                 {% else %}
-                                    <input type="submit" class="btn btn-outline-dark text-uppercase mt-5 text-main" value="Add to basket">
+                                    <input type="submit" class="btn btn-secondary btn-outline-dark text-uppercase mt-5 text-main" value="Add to basket">
                                 {% endif %}
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">

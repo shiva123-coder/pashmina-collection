@@ -33,6 +33,11 @@ img.card-img-top.no-image.img-fluid {
     object-fit: fill;
 }
 
+del.custom-strike {
+    text-decoration-color: brown;
+    position: relative;
+}
+
 .small-thumbnail {
     width: 50px;
     /* Adjust the width as needed */

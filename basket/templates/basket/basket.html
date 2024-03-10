@@ -34,14 +34,14 @@
                     {% for product in basket_products %}
                         <div class="row">
                             <div class="col-12 mb-2">
-                                <p class="text-center font-weight-bold text-main text-capitalize">{{ product.product.product_name }}</p>
+                                <p class="text-center font-weight-bold text-dark text-capitalize">{{ product.product.product_name }}</p>
                             </div>
                             <div class="col-12 mb-2">
                                 {% include "basket/image.html" %}
                             </div>
                             <div class="col-12 order-sm-last fourth-text">
-                                <p class="text-center">Each : £ {{ product.product.price }}</p>
-                                <p><strong>Total : £ {{ product.product.price | calculate_total:product.quantity }}</strong></p>
+                                <p class="text-center">Each : £ {{ product.product.selling_price }}</p>
+                                <p><strong>Total : £ {{ product.product.selling_price | calculate_total:product.quantity }}</strong></p>
                             </div>
                             <div class="col-12 fourth-text">
                                Size: {{ product.selected_size }}
@@ -63,7 +63,7 @@
                 <!-----bootstrap table----->
                 <div class="table-responsive rounded d-none d-md-block">
                     <table class="table table-sm table-borderless">
-                        <thead class="text-main font-weight-bold">
+                        <thead class="text-dark fourth-text font-weight-bold">
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Product</th>
@@ -76,7 +76,7 @@
                         </thead>
 
                         {% for product in basket_products %}
-                            <tr class="text-main">
+                            <tr class="text-dark fourth-text">
                                 <td class="p-3 w-25">
                                     {% include "basket/image.html" %}
                                 </td>
@@ -84,7 +84,7 @@
                                     <p class="my-0 third-text text-capitalize">{{ product.product.product_name }}</p>
                                 </td>
                                 <td class="py-3">
-                                    <p class="my-0">£ {{ product.product.price }}</p>
+                                    <p class="my-0">£ {{ product.product.selling_price }}</p>
                                 </td>
                                 <td class="py-3">
                                     {% include "basket/quantity.html" %}
@@ -96,11 +96,11 @@
                                     {{ product.selected_color }}
                                 </td>
                                 <td class="py-3">
-                                    <p><strong></strong>£ {{ product.product.price | calculate_total:product.quantity }}</p>
+                                    <p><strong></strong>£ {{ product.product.selling_price | calculate_total:product.quantity }}</p>
                                 </td>
                             </tr>
                         {% endfor %}
-                        <tr class="text-main">
+                        <tr class="text-dark">
                             <td colspan="5" class=" text-right">
                                 {% include "basket/cost.html" %}
                             </td>

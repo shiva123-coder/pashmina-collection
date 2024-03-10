@@ -41,12 +41,15 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <p class="display-5 text-left text-main font-weight-bold text-capitalize">
+                                    <p class="fourth-text text-left text-dark font-weight-bold text-capitalize">
                                         {{ product.product_name }}
                                     </p>
                                 </div>
                                 <div class="col">
-                                    <p class="diaplay-3 text-right text-main font-weight-bold">£{{ product.price }}</p>
+                                    <p class="fourth-text text-right text-dark font-weight-bold">£{{ product.selling_price }}</p>
+                                    {% if product.old_price %}
+                                    <p class="fourth-text text-right text-red font-weight-bold"><del class="custom-strike text-danger">Was £{{product.old_price}}</del></p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
