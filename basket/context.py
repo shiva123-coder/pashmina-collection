@@ -43,6 +43,9 @@ def basket_contents(request):
         free_delivery_eligibility = 0
 
     sum_total = delivery_cost + total
+    
+    # Set the sum_total session variable
+    request.session['sum_total'] = sum_total
 
     context = {
         'basket_products': basket_products,

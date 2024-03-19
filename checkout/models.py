@@ -10,7 +10,6 @@ from decimal import Decimal
 from product.models import Product, ProductImage
 from profiles.models import UserProfile
 
-
 class Order(models.Model):
     """ create order model"""
     order_number = models.CharField(max_length=8,

@@ -157,4 +157,3 @@ def remove_whole_basket(request):
         
         messages.info(request, "Your basket is emptied due to inactivity. Please re-add your favorites")
     return redirect('view_basket')
-

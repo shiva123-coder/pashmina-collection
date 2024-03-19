@@ -51,5 +51,4 @@ class OrderAdmin(admin.ModelAdmin):
         '-date',
     )
 
-
 admin.site.register(Order, OrderAdmin)

@@ -198,7 +198,7 @@
         {% endblock %}
         <script src="{% static 'js/main.js' %}"></script>
 
-        <!--JavaScript to empty the basket automatically if user is not active for more than 15 minutes-->
+        <!--JavaScript to empty the basket automatically if user is not active for more than 10 minutes-->
         <script type="text/javascript">
             var inactivityTimer;
 
@@ -207,11 +207,11 @@
                 // Clear any previous timer to avoid multiple timers running concurrently
                 clearTimeout(inactivityTimer);
                 
-                // Set a new timer to execute after 15 minutess of inactivity
+                // Set a new timer to execute after 10 minutess of inactivity
                 inactivityTimer = setTimeout(function() {
                     // Redirect the user to remove_whole_basket URL after 15 minutess of inactivity
                     window.location.href = "{% url 'remove_whole_basket' %}";
-                }, 900000); // 1000 milliseconds = 1 second
+                }, 100000); // 1000 milliseconds = 1 second
             }
 
             // Execute the resetInactivityTimer function when the document is ready

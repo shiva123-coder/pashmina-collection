@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # project apps
+
     'home',
     'product',
     'basket',
