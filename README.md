@@ -27,6 +27,9 @@
 
 ## Freeze requirements
 - pip3 freeze > requirements.txt
+- If above command dont work then use : python -m pip freeze --all > requirements.txt
+
+
 
 ## Database Migrations
 - python3 manage.py makemigrations --dry-run (check before making migrations)
@@ -160,6 +163,33 @@
     2. add below to django settings:
       - from dotenv import load_dotenv
       - load_dotenv()
+
+### Issue with git push as below when command git push was run on the terminal :
+    ```
+        remote: Permission to PashminaReal/pashmina-paragon.git denied to shiva123-coder.
+        fatal: unable to access 'https://github.com/PashminaReal/pashmina-paragon.git/': The requested URL returned error: 403
+
+    ```
+
+ - This was fixed by creating personal token access on github setting and using the token on the terminal:
+  - Create personal  access token:
+   - Go to Github Settings and look for Develover Settings
+   - Click on Personal access Tokens and Click Generate new token
+
+ - Add token to the project:
+    - Back to vscode terminal, run below command:
+     - git remote set-url origin https://<token>@github.com/<username>/<repo>
+     - I have repo name pashmina-paragon and my github username is PashminaReal so above command looks like below :
+     git remote set-url origin https://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@github.com/PashminaReal/pashmina-paragon   
+
+ - Issue fixed now, and personal access token kept safely:
+
+
+### Pip3 freeze > requirements.txt command not working :
+ - Use below command instead :
+  - ```
+    python -m pip freeze --all > requirements.txt
+    ```
 
 ### image was not displaying when <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}no-image.jpg"/>
  - below line of code was needed to add inside the context processor of django setting :

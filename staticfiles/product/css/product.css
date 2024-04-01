@@ -33,6 +33,11 @@ img.card-img-top.no-image.img-fluid {
     object-fit: fill;
 }
 
+del.custom-strike {
+    text-decoration-color: brown;
+    position: relative;
+}
+
 .small-thumbnail {
     width: 50px;
     /* Adjust the width as needed */
@@ -75,6 +80,18 @@ input#id_qty_1,
 button#increase-qty_1,
 button#decrease-qty_1 {
     font-size: 1.25rem;
+}
+
+
+/*--add/edit product--*/
+
+.admin-container {
+    padding-top: 3rem;
+    padding-bottom: 10rem;
+}
+
+label.form-check-label {
+    margin-left: 1rem;
 }
 
 

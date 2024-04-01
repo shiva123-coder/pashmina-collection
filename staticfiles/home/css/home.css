@@ -24,6 +24,12 @@
    .dropdown-menu-second {
        left: auto;
    }
+   /*--Navbar--*/
+   
+   img.main-logo {
+       height: 100%;
+       padding: 0px;
+   }
    /*--Homepage - Carousel --*/
    
    .container-carousel {
@@ -67,6 +73,15 @@
        margin-right: -50%;
        transform: translate(-50%, -50%);
    }
+   
+   .sign,
+   .text-desc {
+       text-shadow: 0 0 25px var(--dark), 0 0 25px var(--gray-dark), 0 0 25px #fff, 0 0 20px #dde2db, 0 0 25px var(--light), 0 0 25px var(--light), 0 0 50px var(--light), 0 0 50px #e0e5df;
+   }
+   
+   .text-desc {
+       letter-spacing: 0.25rem;
+   }
    /*--First Carousel--*/
    
    .first .btn-sub-first,
@@ -74,7 +89,12 @@
        font-size: 2rem;
        background-color: var(--text);
    }
+   /*--paragraph below carousel--*/
    /*-- Cards on homepage, below carousel --*/
+   
+   .container-second {
+       padding-bottom: 8rem;
+   }
    
    .heading-card-main {
        margin-top: 5rem;
@@ -107,13 +127,59 @@
        font-size: 2rem;
        padding: 0.75rem;
    }
+   /*--contact form--*/
+   
+   #contact-section {
+       margin-bottom: 8rem;
+   }
+   
+   .contact-form {
+       text-align: center;
+   }
+   
+   label {
+       font-size: 2rem;
+   }
+   
+   input#id_full_name,
+   input#id_email,
+   textarea#id_message {
+       width: 50%;
+       font-size: 1.25rem;
+       margin-left: 2rem;
+       font-weight: bold;
+   }
+   
+   input#id_email {
+       margin-left: 5rem;
+   }
+   
+   textarea#id_message {
+       resize: none;
+       margin-left: 3rem;
+   }
+   /*--contact form success template--*/
+   
+   .success-container {
+       margin-top: 15rem;
+   }
    /*----Media---*/
-   /* @media screen and (max-width: 992px) {
-       .input-group {
-           width: 40vw;
+   
+   @media screen and (min-width: 992px) {
+       .sign {
+           letter-spacing: 1rem;
+           font-size: 5rem;
+       }
+       .text-desc {
+           letter-spacing: 1rem;
        }
    }
-   */
+   
+   @media screen and (max-width: 992px) {
+       .input-group-home {
+           width: 50vw;
+       }
+   }
    
    @media screen and (max-width: 576px) {
        .input-group-home {

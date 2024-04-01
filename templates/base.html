@@ -84,7 +84,30 @@
 
         <title>Pashmina Paragon - Exclusive Handmade Cashmere from Nepal{% block extra_title %}{% endblock %}</title>
         <link rel="icon" href="{{ MEDIA_URL }}logo.png" type="image/x-icon">
-  </head>
+        
+        <link rel="stylesheet" href="{% static 'cookie_consent/cookieconsent.min.css' %}">
+        <script src="{% static 'cookie_consent/cookieconsent.min.js' %}"></script>
+        <script>
+            window.addEventListener("load", function(){
+                window.cookieconsent.initialise({
+                    "palette": {
+                        "popup": {
+                            "background": "#252e39"
+                        },
+                        "button": {
+                            "background": "#14a7d0"
+                        }
+                    },
+                    "position": "bottom-right",
+                    "content": {
+                        "message": "This website uses cookies to ensure you get the best experience on our website.",
+                        "dismiss": "Got it!",
+                        "link": "Learn More",
+                        "href": "/privacy-policy/"
+                    }
+                })});
+        </script>
+    </head>
     <body>
         <header class="container-fluid">
             <!--navbar brand-->

@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'profiles',
     
     #others
+    'cookie_consent',
     'crispy_forms',
     'crispy_bootstrap4',
     'storages',
@@ -80,7 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'allauth.account.middleware.AccountMiddleware', 
+    # 'allauth.account.middleware.AccountMiddleware',     
 ]
 
 
@@ -100,9 +101,10 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request', # required by allauth
                 'django.contrib.auth.context_processors.auth',
+                # 'cookie_consent.context_processors.cookie_consent', # required by cookie_consent
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
-                'basket.context.basket_contents',  
+                'basket.context.basket_contents',
             ],
              'builtins':[
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -126,6 +128,25 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 SITE_ID = 1
 
 WSGI_APPLICATION = 'pashmina_home.wsgi.application'
+
+
+COOKIE_CONSENT_OPTIONS = {
+    "palette": {
+        "popup": {
+            "background": "#252e39"
+        },
+        "button": {
+            "background": "#14a7d0"
+        }
+    },
+    "position": "bottom-right",
+    "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn More",
+        "href": "/privacy-policy/"
+    }
+}
 
 
 # Database

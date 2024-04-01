@@ -28,6 +28,7 @@ urlpatterns = [
     path('basket/', include('basket.urls')),
     path('checkout/', include('checkout.urls')),
     path('accounts/', include('profiles.urls')),
+    path("cookies/", include("cookie_consent.urls")),
 ] 
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

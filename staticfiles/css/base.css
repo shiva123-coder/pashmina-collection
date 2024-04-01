@@ -1,23 +1,21 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    scroll-behavior: smooth;
-}
-
-html {
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    font-size: 62.5%;
-    overflow-x: hidden;
-}
-
-
-/*html font size calculated as below inorder to make 1rem = 10px
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+     :root {
+        scroll-behavior: smooth;
+    }
+    
+    html {
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        font-size: 62.5%;
+        overflow-x: hidden;
+    }
+    /*html font size calculated as below inorder to make 1rem = 10px
 
     1rem = 16px = 100%
     which means, 16px = 100% then,
@@ -25,146 +23,225 @@ html {
     now, html font size added to 62.5% which means, 
     if we use 1rem then it will now be equivelant to 10px
 */
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Dosis', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-:root {
-    --white: #FFFFFF;
-    --yellow: #f8d90f;
-    --green: #d3dd18;
-    --main: #6c0707;
-}
-
-header {
-    background-color: var(--yellow);
-    z-index: 999;
-}
-
-.content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-
-/*---------specials----------*/
-
-.text-main {
-    color: var(--main);
-    font-size: 1.6rem;
-}
-
-.first-text {
-    color: var(--main);
-    font-weight: bold;
-    font-size: 2.5rem;
-}
-
-.second-text {
-    color: var(--main);
-    font-weight: bold;
-    font-size: 2rem;
-}
-
-.third-text {
-    color: var(--main);
-    font-size: 2rem;
-}
-
-.fourth-text {
-    color: var(--main);
-    font-size: 1.75rem;
-}
-
-
-/* .text-dark {
-    font-size: 1.25rem;
-} */
-
-.message-container {
-    position: fixed;
-    top: 15%;
-    right: 20px;
-    z-index: 9999999999;
-}
-
-#scroll-icon {
-    position: fixed;
-    width: 35px;
-    bottom: 55px;
-    right: 0;
-    color: #000;
-    font-size: 1.75em;
-    overflow: hidden;
-    cursor: pointer;
-    text-decoration: none;
-    display: none;
-    z-index: 999999;
-}
-
-
-/*--Navbar---*/
-
-.nav-item {
-    font-size: 2rem;
-}
-
-.dropdown-item {
-    color: var(--main);
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 1rem;
-    text-align: center;
-    background: gold;
-}
-
-
-/*--close button on django message container--*/
-
-.close {
-    font-size: 2rem;
-    color: red;
-}
-
-
-/*-- Footer--*/
-
-footer {
-    background: gold;
-}
-
-
-/*----Media---*/
-
-@media screen and (max-width: 992px) {
-    .main-nav {
-        margin-top: -4rem;
+    
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Dosis', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
+    
+     :root {
+        --bg_main: brown;
+        --text_main: #FFFFFF;
+        --second_text: maroon;
+        /*about-link*/
+    }
+    
     header {
+        background-color: var(--bg_main);
+        z-index: 999;
+    }
+    
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-top: 4rem;
+    }
+    /*---------specials----------*/
+    
+    .text-main {
+        color: var(--text_main);
+        font-size: 1.6rem;
+    }
+    
+    .text-sub {
+        color: var(--second_text);
+    }
+    
+    .bg-main {
+        background: var(--bg_main);
+    }
+    
+    .first-text {
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+    
+    .second-text {
+        font-weight: bold;
+        font-size: 2rem;
+    }
+    
+    .third-text {
+        font-size: 2rem;
+    }
+    
+    .fourth-text {
+        font-size: 1.75rem;
+    }
+    
+    .bg-first {
+        background: darkgray
+    }
+    
+    .bg-second {
+        background: lightyellow;
+    }
+    
+    .bg-third {
+        background: lightskyblue;
+    }
+    
+    .message-container {
         position: fixed;
-        top: 0;
+        top: 15%;
+        right: 20px;
+        z-index: 9999999999;
     }
-    .content {
-        margin-top: 5rem;
+    
+    #scroll-icon {
+        position: fixed;
+        width: 35px;
+        bottom: 55px;
+        right: 0;
+        color: #000;
+        font-size: 1.75em;
+        overflow: hidden;
+        cursor: pointer;
+        text-decoration: none;
+        display: none;
+        z-index: 999999;
     }
-}
-
-@media screen and (min-width: 768px) {
-    .content {
-        margin-top: 8rem;
+    /*--Navbar---*/
+    
+    .brand-logo {
+        height: 12rem;
+        width: fit-content;
+        margin-bottom: -8rem;
+        margin-top: -3rem;
+        padding-top: 3rem;
     }
-}
-
-
-/* @media screen and (min-width: 768px) and (max-width: 992px) {
-    .content {
-        margin-top: 8rem;
+    
+    .brand-text {
+        font-size: 2.5rem;
+        vertical-align: top;
+        margin-top: 1.5rem;
     }
-} */
+    
+    img.card-img-top.img-fluid {
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        height: 100%;
+    }
+    
+    .nav-item {
+        font-size: 2rem;
+    }
+    
+    .nav-item,
+    .nav-link:hover {
+        border: none;
+    }
+    
+    .navbar-light .navbar-brand {
+        color: var(--text_main);
+    }
+    
+    .navbar-light .navbar-toggler {
+        background: var(--text_main);
+    }
+    
+    .dropdown-item {
+        color: var(--text_main);
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 1rem;
+        text-align: center;
+        background: var(--bg_main);
+    }
+    
+    .dropdown-menu {
+        left: auto;
+    }
+    /*---sort option--*/
+    /*--close button on django message container--*/
+    
+    .close {
+        font-size: 2rem;
+        color: red;
+    }
+    /*-- Footer--*/
+    
+    footer {
+        background: var(--bg_main);
+    }
+    
+    .social-icon-whatsapp {
+        margin-right: 5rem;
+    }
+    /*--Cookie Banner --*/
+    
+    .cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f0f0f0;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .cookie-banner p {
+        margin: 0;
+    }
+    
+    .cookie-banner button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .cookie-banner button:hover {
+        background-color: #0056b3;
+    }
+    /*----Media---*/
+    
+    @media screen and (max-width: 992px) {
+        header {
+            position: fixed;
+            top: 0;
+        }
+        .navbar-nav {
+            padding-bottom: 100vh;
+            padding-top: 3rem;
+        }
+        .nav-link {
+            position: relative;
+        }
+        i.fas.fa-chevron-down.text-main {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+        .content {
+            margin-top: 12rem;
+        }
+        img.card-img-top.img-fluid.main-logo {
+            width: auto;
+            height: 100%;
+        }
+        @media screen and (min-width: 768px) {
+            .content {
+                margin-top: 8rem;
+            }
+        }
+    }
