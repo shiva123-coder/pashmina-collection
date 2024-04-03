@@ -17,7 +17,7 @@ defusedxml==0.7.1
 distlib==0.3.6
 dj-database-url==2.0.0
 Django==3.2.23
-django-allauth==0.54.0
+django-allauth==0.61.1
 django-appconf==1.0.6
 django-bitfield==1.6.4
 django-bootstrap-datepicker==1.4.0
